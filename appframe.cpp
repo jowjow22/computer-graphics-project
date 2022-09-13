@@ -1,7 +1,7 @@
 #include "appframe.h"
-#include "rectangle.h"
 #include "line.h"
 #include "point.h"
+#include "rectangle.h"
 #include <QScreen>
 #include "coordsengine.h"
 
@@ -18,17 +18,27 @@ void AppFrame::paintEvent(QPaintEvent *event){
     pen.setWidth(5);
 
     painter.setPen(pen);
-    Rectangle rect(200, 200, 60);
-    Rectangle rect2(10, 100, 30);
-    Line line(10, 10, 100, 100);
-    Point point(150, 150);
+    Point point1(150, 150);
+    Point point2(300, 150);
+    Point point3(150, 300);
+    Point point4(300, 300);
 
+//    Line line1(point1, point2);
+//    Line line2(point1, point3);
+//    Line line3(point3, point4);
+//    Line line4(point4, point2);
+
+    Rectangle rect(point1, point2, point3, point4);
+
+    worldObjectList.append(&point1);
+    worldObjectList.append(&point2);
+    worldObjectList.append(&point3);
+    worldObjectList.append(&point4);
+//    worldObjectList.append(&line1);
+//    worldObjectList.append(&line2);
+//    worldObjectList.append(&line3);
+//    worldObjectList.append(&line4);
     worldObjectList.append(&rect);
-    worldObjectList.append(&rect2);
-    worldObjectList.append(&line);
-    worldObjectList.append(&point);
-
-
 
     for(GenericObject *list : worldObjectList){
         list->drawObject(&painter);

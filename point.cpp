@@ -4,7 +4,7 @@ Point::Point(int x, int y)
 {
     this->x = x;
     this->y = y;
-    this->point = QPoint(this->x, this->y);
+    this->point = QPoint(x, y);
 }
 
 void Point::drawObject(QPainter *painter){
