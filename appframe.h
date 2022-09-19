@@ -12,7 +12,6 @@ class AppFrame: public QFrame
 public:
     AppFrame(QWidget *parent = nullptr);
     virtual void paintEvent(QPaintEvent *event);
-    virtual void resizeEvent(QResizeEvent *event);
 };
 
 #endif // APPFRAME_H

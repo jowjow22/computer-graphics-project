@@ -23,6 +23,9 @@ void AppFrame::paintEvent(QPaintEvent *event){
     Point point3(150, 300);
     Point point4(300, 300);
 
+    Point point5(100, 100);
+    painter.drawPoint(point5);
+
 //    Line line1(point1, point2);
 //    Line line2(point1, point3);
 //    Line line3(point3, point4);
@@ -46,13 +49,7 @@ void AppFrame::paintEvent(QPaintEvent *event){
     update();
 }
 
-void AppFrame::resizeEvent(QResizeEvent *event){
-    CoordsEngine *coords = new CoordsEngine();
-    QSize size(coords->getWindowWidth() / 2, coords->getWindowHeight() - 40);
-    std::cout << coords->getWindowHeight();
-    QFrame::resizeEvent(event);
-    AppFrame::resize(size);
-}
+
 
 
 
