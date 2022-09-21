@@ -21,9 +21,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     void resizeEvent(QResizeEvent * event);
     ~MainWindow();
-    int a, b, c, d;
-    int *w = &a, *h = &b, *wOld = &c, *hOld = &d;
-    void setIntWH(int *w, int *h, int *wOld, int* hOld);
+    int *w = new int, *h = new int;
 
 private slots:
 

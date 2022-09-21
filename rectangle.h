@@ -13,7 +13,7 @@ class Rectangle: public QLine, public GenericObject
     QList<QLine> rect;
 public:
     QLine line1, line2, line3, line4;
-    Rectangle(Point point1, Point point2, Point point3, Point point4);
+    Rectangle(Point centerPoint, int size);
     virtual void drawObject(QPainter *painter);
     virtual ~Rectangle()
     { }
