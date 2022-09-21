@@ -19,9 +19,17 @@ void AppFrame::paintEvent(QPaintEvent *event){
 
     painter.setPen(pen);
 
-    Rectangle rect(Point(0,0), 100);
-    Rectangle rect2(Point(1060,300), AppFrame::width()/2);
-    worldObjectList.append(&rect);
+    painter.setWindow(-50, -50, 100, 100);
+
+    int side = qMin(width(), height());
+    int x = (width() - side / 2);
+    int y = (height() - side / 2);
+
+    painter.setViewport(x, y, side, side);
+
+    //Rectangle rect(Point(0,0), 100);
+    Rectangle rect2(Point(0,0), 100);
+    //worldObjectList.append(&rect);
     worldObjectList.append(&rect2);
 
     for(GenericObject *list : worldObjectList){
@@ -29,8 +37,3 @@ void AppFrame::paintEvent(QPaintEvent *event){
     }
     update();
 }
-
-
-
-
-

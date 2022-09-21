@@ -14,16 +14,15 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::resizeEvent(QResizeEvent *event)
-{
-    AppFrame frame;
-    QMainWindow::resizeEvent(event);
-    *w = QWidget::width()/2;
-    *h = QWidget::height()/2;
-    ui->frame->setGeometry(frame.x(),frame.y(), *w, *h);
-}
+//void MainWindow::resizeEvent(QResizeEvent *event)
+//{
+//    AppFrame frame;
+//    QMainWindow::resizeEvent(event);
+//    *w = QWidget::width();
+//    *h = QWidget::height();
+//    ui->frame->setGeometry(ui->frame->x(),ui->frame->y(), *w, *h);
+//}
 
 
 //XVP = (QWidget::x()/1012)*506;
-//XVP = (1-QWidget::y()/550)*550;
-
+//YVP = (1-QWidget::y()/550)*550;

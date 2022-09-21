@@ -14,6 +14,7 @@ class Rectangle: public QLine, public GenericObject
 public:
     QLine line1, line2, line3, line4;
     Rectangle(Point centerPoint, int size);
+    Rectangle(Point centerPoint, int sizeWidth, int sizeHeight);
     virtual void drawObject(QPainter *painter);
     virtual ~Rectangle()
     { }

@@ -16,7 +16,8 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     point.cpp \
-    rectangle.cpp
+    rectangle.cpp \
+    window.cpp
 
 HEADERS += \
     appframe.h \
@@ -25,7 +26,8 @@ HEADERS += \
     line.h \
     mainwindow.h \
     point.h \
-    rectangle.h
+    rectangle.h \
+    window.h
 
 FORMS += \
     mainwindow.ui
