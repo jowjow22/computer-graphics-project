@@ -19,9 +19,7 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
-    //void resizeEvent(QResizeEvent * event);
     ~MainWindow();
-    int *w = new int, *h = new int;
 
 private slots:
 

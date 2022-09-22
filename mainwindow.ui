@@ -20,10 +20,10 @@
    <widget class="AppFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>10</y>
-      <width>506</width>
-      <height>550</height>
+      <x>0</x>
+      <y>0</y>
+      <width>600</width>
+      <height>450</height>
      </rect>
     </property>
     <property name="styleSheet">
