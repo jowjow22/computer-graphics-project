@@ -7,7 +7,6 @@
 #include <QUndoView>
 #include <QResizeEvent>
 #include "appframe.h"
-#include <QRect>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

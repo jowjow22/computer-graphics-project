@@ -9,6 +9,7 @@
 
 class AppFrame: public QFrame
 {
+    QPainter *painter;
 public:
     AppFrame(QWidget *parent = nullptr);
     virtual void paintEvent(QPaintEvent *event);
