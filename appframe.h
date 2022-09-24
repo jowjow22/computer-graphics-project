@@ -4,7 +4,6 @@
 #include "QFrame"
 #include <QPainter>
 #include <iostream>
-#include <QResizeEvent>
 
 
 class AppFrame: public QFrame

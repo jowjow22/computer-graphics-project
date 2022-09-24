@@ -10,7 +10,6 @@ CONFIG += c++17
 
 SOURCES += \
     appframe.cpp \
-    coordsengine.cpp \
     genericobject.cpp \
     line.cpp \
     main.cpp \
@@ -21,7 +20,6 @@ SOURCES += \
 
 HEADERS += \
     appframe.h \
-    coordsengine.h \
     genericobject.h \
     line.h \
     mainwindow.h \
