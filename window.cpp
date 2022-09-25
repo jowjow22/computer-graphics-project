@@ -17,12 +17,12 @@ Window::Window(int vpMaxX, int vpMaxY, float wXMin, float wXMax, float wYMin, fl
 }
 
 float Window::getWindowX(float x){
-   float windowMidX = (this->wXMax+this->wXMin)/2;
+   float windowMidX = (this->wXMax-this->wXMin)/2;
    return (this->worldMid[0]+windowMidX + x);
 }
 
 float Window::getWindowY(float y){
-    float windowMidY = (this->wYMax+this->wYMin)/2;
+    float windowMidY = (this->wYMax-this->wYMin)/2;
     return (this->worldMid[0]+windowMidY + y);
 }
 
