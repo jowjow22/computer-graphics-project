@@ -45,6 +45,10 @@
       <height>25</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(98, 160, 234);
+color: rgb(0, 0, 0);</string>
+    </property>
     <property name="text">
      <string>+ x</string>
     </property>
@@ -57,6 +61,10 @@
       <width>89</width>
       <height>25</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(98, 160, 234);
+color: rgb(0, 0, 0);</string>
     </property>
     <property name="text">
      <string>+ y</string>
@@ -71,6 +79,10 @@
       <height>25</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(98, 160, 234);
+color: rgb(0, 0, 0);</string>
+    </property>
     <property name="text">
      <string>- x</string>
     </property>
@@ -84,8 +96,46 @@
       <height>25</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(98, 160, 234);
+color: rgb(0, 0, 0);</string>
+    </property>
     <property name="text">
      <string>-y</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_5">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>250</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(98, 160, 234);
+color: rgb(0, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>Up Scale</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_6">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>290</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(98, 160, 234);
+color: rgb(0, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>Down Scale</string>
     </property>
    </widget>
   </widget>
@@ -112,6 +162,8 @@
     <slot>plusWindowsY()</slot>
     <slot>minusWindowsX()</slot>
     <slot>minusWindowsY()</slot>
+    <slot>upScale()</slot>
+    <slot>downScale()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -178,6 +230,38 @@
     <hint type="destinationlabel">
      <x>493</x>
      <y>244</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_5</sender>
+   <signal>clicked()</signal>
+   <receiver>frame</receiver>
+   <slot>upScale()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>743</x>
+     <y>287</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>526</x>
+     <y>286</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_6</sender>
+   <signal>clicked()</signal>
+   <receiver>frame</receiver>
+   <slot>downScale()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>740</x>
+     <y>322</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>515</x>
+     <y>334</y>
     </hint>
    </hints>
   </connection>

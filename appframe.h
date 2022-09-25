@@ -15,6 +15,8 @@ public:
     void minusWindowsX();
     void plusWindowsY();
     void minusWindowsY();
+    void upScale();
+    void downScale();
 };
 
 #endif // APPFRAME_H
