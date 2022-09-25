@@ -17,13 +17,17 @@ void AppFrame::paintEvent(QPaintEvent *event){
     /*world definition in memory*/
     QFrame::paintEvent(event);
     QList<GenericObject *> worldObjectList;
-    Point p(0,0);
-    Point p1(100,100);
-    Line lin(p,p1);
-    Rectangle r(p, 100);
+    Point p1(0,0);
+    Point p2(0,300);
+    Point p3(300, 300);
+    Point p4(150, 500);
+    Line lin1(p2,p4);
+    Line lin2(p4, p3);
+    Rectangle rect(p1, p3);
 
-    worldObjectList.append(&r);
-    worldObjectList.append(&lin);
+    worldObjectList.append(&rect);
+    worldObjectList.append(&lin1);
+    worldObjectList.append(&lin2);
     /*world definition in memory*/
 
     /*window definition*/
@@ -34,17 +38,25 @@ void AppFrame::paintEvent(QPaintEvent *event){
     /*window definition*/
 
     QList<GenericObject *> displayFile;
-    int pvpX = window.gVPX(p.x);
-    int pvpY = window.gVPY(p.y);
     int pvpX1 = window.gVPX(p1.x);
     int pvpY1 = window.gVPY(p1.y);
+    int pvpX2 = window.gVPX(p2.x);
+    int pvpY2 = window.gVPY(p2.y);
+    int pvpX3 = window.gVPX(p3.x);
+    int pvpY3 = window.gVPY(p3.y);
+    int pvpX4 = window.gVPX(p4.x);
+    int pvpY4 = window.gVPY(p4.y);
 
-    Point pVp(pvpX, pvpY);
     Point pVp1(pvpX1, pvpY1);
-    Line lVp(pVp, pVp1);
-    Rectangle rVp(pVp, 100);
-    displayFile.append(&rVp);
-    displayFile.append(&lVp);
+    Point pVp2(pvpX2, pvpY2);
+    Point pVp3(pvpX3, pvpY3);
+    Point pVp4(pvpX4, pvpY4);
+    Line linVp1(pVp2, pVp4);
+    Line linVp2(pVp4, pVp3);
+    Rectangle rectVp(pVp1, pVp3);
+    displayFile.append(&linVp1);
+    displayFile.append(&linVp2);
+    displayFile.append(&rectVp);
 
     /*draw*/
     QPainter painter(this);
