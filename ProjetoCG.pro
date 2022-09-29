@@ -18,6 +18,7 @@ SOURCES += \
     point.cpp \
     rectangle.cpp \
     rotation.cpp \
+    scale.cpp \
     translation.cpp \
     window.cpp
 
@@ -30,6 +31,7 @@ HEADERS += \
     point.h \
     rectangle.h \
     rotation.h \
+    scale.h \
     translation.h \
     window.h
 
