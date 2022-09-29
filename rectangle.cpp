@@ -1,10 +1,10 @@
 #include "rectangle.h"
 
 Rectangle::Rectangle(Point p1, Point p2, Point p3, Point p4) {
-    this->line1 = QLine(p1, p2);
-    this->line2 = QLine(p1, p3);
-    this->line3 = QLine(p3, p4);
-    this->line4 = QLine(p4, p2);
+    this->line1 = QLine(p1.x, p1.y, p2.x, p2.y);
+    this->line2 = QLine(p1.x, p1.y, p3.x, p3.y);
+    this->line3 = QLine(p3.x, p3.y, p4.x, p4.y);
+    this->line4 = QLine(p4.x, p4.y, p2.x, p2.y);
     this->rect.append(line1);
     this->rect.append(line2);
     this->rect.append(line3);

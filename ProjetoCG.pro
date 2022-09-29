@@ -11,20 +11,26 @@ CONFIG += c++17
 SOURCES += \
     appframe.cpp \
     genericobject.cpp \
+    geometrictransformation.cpp \
     line.cpp \
     main.cpp \
     mainwindow.cpp \
     point.cpp \
     rectangle.cpp \
+    rotation.cpp \
+    translation.cpp \
     window.cpp
 
 HEADERS += \
     appframe.h \
     genericobject.h \
+    geometrictransformation.h \
     line.h \
     mainwindow.h \
     point.h \
     rectangle.h \
+    rotation.h \
+    translation.h \
     window.h
 
 FORMS += \

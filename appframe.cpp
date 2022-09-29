@@ -4,6 +4,8 @@
 #include "rectangle.h"
 #include <QScreen>
 #include "window.h"
+#include "rotation.h"
+#include "geometrictransformation.h"
 
 int xGlobal = 0;
 int yGlobal = 0;
@@ -17,17 +19,24 @@ void AppFrame::paintEvent(QPaintEvent *event){
     /*world definition in memory*/
     QFrame::paintEvent(event);
     QList<GenericObject *> worldObjectList;
-    Point p1(0,0);
-    Point p2(0,300);
-    Point p3(300, 300);
-    Point p4(150, 500);
-    Line lin1(p2,p4);
-    Line lin2(p4, p3);
-    Rectangle rect(p1, p3);
+    Point p1(0,100);
+    Point p2(100,100);
+    Point p3(0, 0);
+    Point p4(100, 0);
 
-    worldObjectList.append(&rect);
-    worldObjectList.append(&lin1);
-    worldObjectList.append(&lin2);
+    Rectangle rect1(p1, p2, p3, p4);
+
+    GeometricTransformation pVp01(p1.x, p1.y, 100, 100, 60);
+    GeometricTransformation pVp02(p2.x, p2.y, 100, 100, 60);
+    GeometricTransformation pVp03(p3.x, p3.y, 100, 100, 60);
+    GeometricTransformation pVp04(p4.x, p3.y, 100, 100, 60);
+
+    Rectangle rectTr(Point(pVp01.getTransformationX(), pVp01.getTransformationY()), Point(pVp02.getTransformationX(), pVp02.getTransformationY()),
+                     Point(pVp03.getTransformationX(), pVp03.getTransformationY()), Point(pVp04.getTransformationX(), pVp04.getTransformationY()));
+
+
+    worldObjectList.append(&rect1);
+    worldObjectList.append(&rectTr);
     /*world definition in memory*/
 
     /*window definition*/
@@ -37,6 +46,7 @@ void AppFrame::paintEvent(QPaintEvent *event){
     Window window(maxVPX, maxVPY, xGlobal, xGlobal+SCALE, yGlobal, yGlobal+SCALE);
     /*window definition*/
 
+    /*viewport definition*/
     QList<GenericObject *> displayFile;
     int pvpX1 = window.gVPX(p1.x);
     int pvpY1 = window.gVPY(p1.y);
@@ -51,12 +61,10 @@ void AppFrame::paintEvent(QPaintEvent *event){
     Point pVp2(pvpX2, pvpY2);
     Point pVp3(pvpX3, pvpY3);
     Point pVp4(pvpX4, pvpY4);
-    Line linVp1(pVp2, pVp4);
-    Line linVp2(pVp4, pVp3);
-    Rectangle rectVp(pVp1, pVp3);
-    displayFile.append(&linVp1);
-    displayFile.append(&linVp2);
+    Rectangle rectVp(pVp1, pVp2, pVp3, pVp4);
     displayFile.append(&rectVp);
+    displayFile.append(&rectTr);
+    /*viewport definition*/
 
     /*draw*/
     QPainter painter(this);
@@ -67,11 +75,11 @@ void AppFrame::paintEvent(QPaintEvent *event){
     painter.setPen(pen);
 
 
-
     for(GenericObject *list : displayFile){
         list->drawObject(&painter);
     }
     /*draw*/
+
     update();
 }
 
