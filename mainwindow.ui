@@ -138,6 +138,19 @@ color: rgb(0, 0, 0);</string>
      <string>Down Scale</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton_7">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>330</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Angle</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -164,6 +177,7 @@ color: rgb(0, 0, 0);</string>
     <slot>minusWindowsY()</slot>
     <slot>upScale()</slot>
     <slot>downScale()</slot>
+    <slot>plusAngle()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -262,6 +276,22 @@ color: rgb(0, 0, 0);</string>
     <hint type="destinationlabel">
      <x>515</x>
      <y>334</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_7</sender>
+   <signal>clicked()</signal>
+   <receiver>frame</receiver>
+   <slot>plusAngle()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>729</x>
+     <y>363</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>531</x>
+     <y>361</y>
     </hint>
    </hints>
   </connection>

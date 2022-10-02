@@ -23,7 +23,7 @@ float Window::getWindowX(float x){
 
 float Window::getWindowY(float y){
     float windowMidY = (this->wYMax-this->wYMin)/2;
-    return (this->worldMid[0]+windowMidY + y);
+    return (this->worldMid[0] + windowMidY + y);
 }
 
 float Window::gNormalizedX(float x){
@@ -43,4 +43,12 @@ float Window::gVPX(float x){
 
 float Window::gVPY(float y){
     return this->gNormalizedY(y)*this->vpMaxY;
+}
+
+QList<QPoint> Window::viewPortTransform(QList<QPoint> points){
+    QList<QPoint> viewPortPoints;
+    for(QPoint point : points){
+        viewPortPoints.append(QPoint(this->gVPX(point.x()), this->gVPY(point.y())));
+    }
+    return viewPortPoints;
 }

@@ -10,33 +10,42 @@
 int xGlobal = 0;
 int yGlobal = 0;
 int SCALE = 300;
+int Angle = 0;
+
 AppFrame::AppFrame(QWidget *parent): QFrame{parent}
 {
 
 }
 
+
+
 void AppFrame::paintEvent(QPaintEvent *event){
     /*world definition in memory*/
     QFrame::paintEvent(event);
-    QList<GenericObject *> worldObjectList;
-    Point p1(0,100);
-    Point p2(100,100);
-    Point p3(0, 0);
-    Point p4(100, 0);
+    Point p1(100,200);
+    Point p2(200,200);
+    Point p3(200, 100);
+    Point p4(100, 100);
 
-    Rectangle rect1(p1, p2, p3, p4);
+    GeometricTransformation pVp01(p1.x, p1.y, 0, 0, 60+Angle);
+    GeometricTransformation pVp02(p2.x, p2.y, 0, 0, 60+Angle);
+    GeometricTransformation pVp03(p3.x, p3.y, 0, 0, 60+Angle);
+    GeometricTransformation pVp04(p4.x, p3.y, 0, 0, 60+Angle);
+    QList<QPoint> points = {QPoint(pVp01.getTransformationX(), pVp01.getTransformationY()), QPoint(pVp02.getTransformationX(), pVp02.getTransformationY()),
+                            QPoint(pVp03.getTransformationX(), pVp03.getTransformationY()), QPoint(pVp04.getTransformationX(), pVp04.getTransformationY())};
 
-    GeometricTransformation pVp01(p1.x, p1.y, 100, 100, 60);
-    GeometricTransformation pVp02(p2.x, p2.y, 100, 100, 60);
-    GeometricTransformation pVp03(p3.x, p3.y, 100, 100, 60);
-    GeometricTransformation pVp04(p4.x, p3.y, 100, 100, 60);
+    Rectangle rectTr(points);
 
-    Rectangle rectTr(Point(pVp01.getTransformationX(), pVp01.getTransformationY()), Point(pVp02.getTransformationX(), pVp02.getTransformationY()),
-                     Point(pVp03.getTransformationX(), pVp03.getTransformationY()), Point(pVp04.getTransformationX(), pVp04.getTransformationY()));
+    GeometricTransformation pVp05(p1.x, p1.y, p4.x, p4.y, 45);
+    GeometricTransformation pVp06(p2.x, p2.y, p4.x, p4.y, 45);
+    GeometricTransformation pVp07(p3.x, p3.y, p4.x, p4.y, 45);
+    GeometricTransformation pVp08(p4.x, p3.y, p4.x, p4.y, 45);
 
+    QList<QPoint> points1 = {QPoint(pVp05.getTransformationX(), pVp05.getTransformationY()), QPoint(pVp06.getTransformationX(), pVp06.getTransformationY()),
+                            QPoint(pVp07.getTransformationX(), pVp07.getTransformationY()), QPoint(pVp08.getTransformationX(), pVp08.getTransformationY())};
 
-    worldObjectList.append(&rect1);
-    worldObjectList.append(&rectTr);
+    QList<QPoint> points2 = {QPoint(p1.x, p1.y), QPoint(p2.x, p2.y), QPoint(p3.x, p3.y), QPoint(p4.x, p4.y)};
+
     /*world definition in memory*/
 
     /*window definition*/
@@ -48,23 +57,16 @@ void AppFrame::paintEvent(QPaintEvent *event){
 
     /*viewport definition*/
     QList<GenericObject *> displayFile;
-    int pvpX1 = window.gVPX(p1.x);
-    int pvpY1 = window.gVPY(p1.y);
-    int pvpX2 = window.gVPX(p2.x);
-    int pvpY2 = window.gVPY(p2.y);
-    int pvpX3 = window.gVPX(p3.x);
-    int pvpY3 = window.gVPY(p3.y);
-    int pvpX4 = window.gVPX(p4.x);
-    int pvpY4 = window.gVPY(p4.y);
 
-    Point pVp1(pvpX1, pvpY1);
-    Point pVp2(pvpX2, pvpY2);
-    Point pVp3(pvpX3, pvpY3);
-    Point pVp4(pvpX4, pvpY4);
-    Rectangle rectVp(pVp1, pVp2, pVp3, pVp4);
-    displayFile.append(&rectVp);
-    displayFile.append(&rectTr);
+
+    Rectangle rectVp(window.viewPortTransform(points));
+    Rectangle rectVp1(window.viewPortTransform(points1));
+    Rectangle rectNorm(window.viewPortTransform(points2));
     /*viewport definition*/
+
+    displayFile.append(&rectVp);
+    //displayFile.append(&rectVp1);
+    displayFile.append(&rectNorm);
 
     /*draw*/
     QPainter painter(this);
@@ -73,7 +75,6 @@ void AppFrame::paintEvent(QPaintEvent *event){
     pen.setWidth(5);
 
     painter.setPen(pen);
-
 
     for(GenericObject *list : displayFile){
         list->drawObject(&painter);
@@ -105,4 +106,8 @@ void AppFrame::upScale(){
 
 void AppFrame::downScale(){
     SCALE = SCALE > 0? SCALE - 50: 0;
+}
+
+void AppFrame::plusAngle() {
+    Angle += 10;
 }
