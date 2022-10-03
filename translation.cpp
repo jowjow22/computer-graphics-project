@@ -21,8 +21,8 @@ void Translation::allocatesT() {
     this->T[0][1] = 0;
     this->T[1][1] = 1;
     this->T[2][1] = 0;
-    this->T[2][0] = dx;
-    this->T[2][1] = dy;
+    this->T[0][2] = dx;
+    this->T[1][2] = dy;
     this->T[2][2] = 1;
 }
 

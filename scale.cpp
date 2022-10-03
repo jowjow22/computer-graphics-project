@@ -21,8 +21,8 @@ void Scale::allocatesS() {
     this->S[0][1] = 0;
     this->S[1][1] = sy;
     this->S[2][1] = 0;
-    this->S[2][0] = 0;
-    this->S[2][1] = 0;
+    this->S[0][2] = 0;
+    this->S[1][2] = 0;
     this->S[2][2] = 1;
 }
 

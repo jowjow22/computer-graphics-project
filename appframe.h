@@ -22,6 +22,8 @@ public:
     void upScale();
     void downScale();
     void plusAngle();
+    void changEscale();
+
 };
 
 #endif // APPFRAME_H

@@ -22,8 +22,8 @@ void Rotation::allocatesR() {
     this->R[0][1] = -sin(angulo*(PI/180));
     this->R[1][1] = cos(angulo*(PI/180));
     this->R[2][1] = 0;
-    this->R[2][0] = 0;
-    this->R[2][1] = 0;
+    this->R[0][2] = 0;
+    this->R[1][2] = 0;
     this->R[2][2] = 1;
 }
 
