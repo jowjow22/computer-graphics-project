@@ -22,7 +22,7 @@ public:
     void upScale();
     void downScale();
     void plusAngle();
-    void changEscale();
+    void changeScale();
 
 };
 

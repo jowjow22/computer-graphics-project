@@ -192,7 +192,7 @@ color: rgb(0, 0, 0);</string>
     <slot>downScale()</slot>
     <slot>plusAngle()</slot>
     <slot>plusDist()</slot>
-    <slot>changEscale()</slot>
+    <slot>changeScale()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -314,15 +314,15 @@ color: rgb(0, 0, 0);</string>
    <sender>pushButton_8</sender>
    <signal>clicked()</signal>
    <receiver>frame</receiver>
-   <slot>changEscale()</slot>
+   <slot>changeScale()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>725</x>
+     <x>733</x>
      <y>404</y>
     </hint>
     <hint type="destinationlabel">
-     <x>502</x>
-     <y>405</y>
+     <x>510</x>
+     <y>404</y>
     </hint>
    </hints>
   </connection>
