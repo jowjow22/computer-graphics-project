@@ -4,6 +4,9 @@
 #include <QMainWindow>
 #include <QPainter>
 #include <iostream>
+#include <QUndoView>
+#include <QResizeEvent>
+#include <QRect>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -16,6 +19,9 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    int *w = new int, *h = new int;
+
+private slots:
 
 private:
     Ui::MainWindow *ui;

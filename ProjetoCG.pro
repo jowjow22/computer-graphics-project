@@ -10,22 +10,30 @@ CONFIG += c++17
 
 SOURCES += \
     appframe.cpp \
-    coordsengine.cpp \
     genericobject.cpp \
+    geometrictransformation.cpp \
     line.cpp \
     main.cpp \
     mainwindow.cpp \
     point.cpp \
-    rectangle.cpp
+    rectangle.cpp \
+    rotation.cpp \
+    scale.cpp \
+    translation.cpp \
+    window.cpp
 
 HEADERS += \
     appframe.h \
-    coordsengine.h \
     genericobject.h \
+    geometrictransformation.h \
     line.h \
     mainwindow.h \
     point.h \
-    rectangle.h
+    rectangle.h \
+    rotation.h \
+    scale.h \
+    translation.h \
+    window.h
 
 FORMS += \
     mainwindow.ui

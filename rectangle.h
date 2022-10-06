@@ -1,16 +1,18 @@
 #ifndef RECTANGLE_H
 #define RECTANGLE_H
-#include "QRect"
+#include "QList"
+#include "QLine"
+#include "line.h"
+#include "point.h"
 #include "genericobject.h"
 #include <iostream>
 
 
-class Rectangle: public QRect, public GenericObject
+class Rectangle: public QLine, public GenericObject
 {
-    QRect rect;
 public:
-    int x, y, size;
-    Rectangle(int x, int y, int size);
+    QList<QPoint> points;
+    Rectangle(QList<QPoint> points);
     virtual void drawObject(QPainter *painter);
     virtual ~Rectangle()
     { }

@@ -1,13 +1,20 @@
 #include "rectangle.h"
 
-Rectangle::Rectangle(int x, int y, int size)
-{
-    this->x = x;
-    this->y = y;
-    this->size = size;
-    this->rect = QRect(this->x, this->y, this->size, this->size);
+Rectangle::Rectangle(QList<QPoint> points) {
+    for(QPoint point : points){
+        this->points.append(point);
+    }
 }
 
 void Rectangle::drawObject(QPainter *painter){
-    painter->drawRect(this->rect);
+    for(int i = 0; i < this->points.length(); i++){
+        if(i == this->points.length() - 1){
+            QLine line(this->points[i], this->points[0]);
+            painter->drawLine(line);
+        }
+        else{
+            QLine line(this->points[i], this->points[i+1]);
+            painter->drawLine(line);
+        }
+    }
 }

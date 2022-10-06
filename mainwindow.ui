@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>881</width>
-    <height>464</height>
+    <width>1012</width>
+    <height>550</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,10 +20,10 @@
    <widget class="AppFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>0</y>
-      <width>601</width>
-      <height>451</height>
+      <x>50</x>
+      <y>20</y>
+      <width>501</width>
+      <height>461</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -36,13 +36,141 @@
      <enum>QFrame::Raised</enum>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>90</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(98, 160, 234);
+color: rgb(0, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>+ x</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>130</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(98, 160, 234);
+color: rgb(0, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>+ y</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>170</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(98, 160, 234);
+color: rgb(0, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>- x</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>210</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(98, 160, 234);
+color: rgb(0, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>-y</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_5">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>250</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(98, 160, 234);
+color: rgb(0, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>Up Scale</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_6">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>290</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(98, 160, 234);
+color: rgb(0, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>Down Scale</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_7">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>330</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Angle</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_8">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>370</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Scale</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>881</width>
+     <width>1012</width>
      <height>22</height>
     </rect>
    </property>
@@ -56,17 +184,147 @@
    <header>appframe.h</header>
    <container>1</container>
    <slots>
-    <slot>DrawRect()</slot>
-    <slot>DrawPoint()</slot>
-    <slot>DrawLine()</slot>
-    <slot>ClearForms()</slot>
-    <slot>DrawAll()</slot>
-    <slot>AddRect()</slot>
-    <slot>AddLine()</slot>
-    <slot>AddPoint()</slot>
+    <slot>plusWindowsX()</slot>
+    <slot>plusWindowsY()</slot>
+    <slot>minusWindowsX()</slot>
+    <slot>minusWindowsY()</slot>
+    <slot>upScale()</slot>
+    <slot>downScale()</slot>
+    <slot>plusAngle()</slot>
+    <slot>plusDist()</slot>
+    <slot>changeScale()</slot>
    </slots>
   </customwidget>
  </customwidgets>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>frame</receiver>
+   <slot>plusWindowsX()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>764</x>
+     <y>112</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>477</x>
+     <y>90</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>frame</receiver>
+   <slot>plusWindowsY()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>731</x>
+     <y>164</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>482</x>
+     <y>162</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>frame</receiver>
+   <slot>minusWindowsX()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>716</x>
+     <y>209</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>509</x>
+     <y>200</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_4</sender>
+   <signal>clicked()</signal>
+   <receiver>frame</receiver>
+   <slot>minusWindowsY()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>739</x>
+     <y>247</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>493</x>
+     <y>244</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_5</sender>
+   <signal>clicked()</signal>
+   <receiver>frame</receiver>
+   <slot>upScale()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>743</x>
+     <y>287</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>526</x>
+     <y>286</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_6</sender>
+   <signal>clicked()</signal>
+   <receiver>frame</receiver>
+   <slot>downScale()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>740</x>
+     <y>322</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>515</x>
+     <y>334</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_7</sender>
+   <signal>clicked()</signal>
+   <receiver>frame</receiver>
+   <slot>plusAngle()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>729</x>
+     <y>363</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>531</x>
+     <y>361</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_8</sender>
+   <signal>clicked()</signal>
+   <receiver>frame</receiver>
+   <slot>changeScale()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>733</x>
+     <y>404</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>510</x>
+     <y>404</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
