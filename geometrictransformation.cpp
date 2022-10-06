@@ -2,10 +2,8 @@
 #include <math.h>
 #define PI 3.14159265
 
-GeometricTransformation::GeometricTransformation(float xOld, float yOld, float dx, float dy, float sx, float sy,float angulo)
+GeometricTransformation::GeometricTransformation(float dx, float dy, float sx, float sy,float angulo)
 {
-    this->xOld = xOld;
-    this->yOld = yOld;
     this->dx = -dx;
     this->dy = -dy;
     this->sx = sx;
@@ -144,4 +142,15 @@ float GeometricTransformation::getTransformationX() {
 float GeometricTransformation::getTransformationY() {
     doTransformation();
     return this->PNew[1][0];
+}
+
+QList<QPoint> GeometricTransformation::getGeometricTransformation(QList<QPoint> list) {
+    for(int i = 0; i < list.length(); i++) {
+        this->xOld = list.at(i).x();
+        this->yOld = list.at(i).y();
+        this->xNew = getTransformationX();
+        this->yNew = getTransformationY();
+        this->listPoints.append(QPoint(this->xNew, this->yNew));
+    }
+    return this->listPoints;
 }

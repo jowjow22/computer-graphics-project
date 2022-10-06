@@ -30,13 +30,9 @@ void AppFrame::paintEvent(QPaintEvent *event){
 
     QList<QPoint> pointsNorm = {QPoint(p1.x, p1.y), QPoint(p2.x, p2.y), QPoint(p3.x, p3.y), QPoint(p4.x, p4.y)};
 
-    GeometricTransformation p01(p1.x, p1.y, 150, 150, 1 + scaleObject, 1 + scaleObject, 60 + Angle);
-    GeometricTransformation p02(p2.x, p2.y, 150, 150, 1 + scaleObject, 1 + scaleObject, 60 + Angle);
-    GeometricTransformation p03(p3.x, p3.y, 150, 150, 1 + scaleObject, 1 + scaleObject, 60 + Angle);
-    GeometricTransformation p04(p4.x, p4.y, 150, 150, 1 + scaleObject, 1 + scaleObject, 60 + Angle);
+    GeometricTransformation rotateAndScale(150, 150, 1 + scaleObject, 1 + scaleObject, 60 + Angle);
 
-    QList<QPoint> points = {QPoint(p01.getTransformationX(), p01.getTransformationY()), QPoint(p02.getTransformationX(), p02.getTransformationY()),
-                            QPoint(p03.getTransformationX(), p03.getTransformationY()), QPoint(p04.getTransformationX(), p04.getTransformationY())};
+    QList<QPoint> points = rotateAndScale.getGeometricTransformation(pointsNorm);
 
     /*world definition in memory*/
 

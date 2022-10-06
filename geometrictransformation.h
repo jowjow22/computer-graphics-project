@@ -1,5 +1,7 @@
 #ifndef GEOMETRICTRANSFORMATION_H
 #define GEOMETRICTRANSFORMATION_H
+#include <QList>
+#include <QPoint>
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -8,7 +10,8 @@ using namespace std;
 class GeometricTransformation
 {
 public:
-    GeometricTransformation(float xOld, float yOld, float dx, float dy, float sx, float sy, float angulo);
+    QList<QPoint> listPoints;
+    GeometricTransformation(float dx, float dy, float sx, float sy, float angulo);
     float P[3][1];
     float R[3][3];
     float T[3][3];
@@ -30,6 +33,7 @@ public:
     void doTransformation();
     float getTransformationX();
     float getTransformationY();
+    QList<QPoint> getGeometricTransformation(QList<QPoint> list);
 };
 
 #endif // GEOMETRICTRANSFORMATION_H
