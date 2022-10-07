@@ -13,7 +13,7 @@ int xGlobal = 0;
 int yGlobal = 0;
 int SCALE = 300;
 int Angle = 0;
-int scaleObject = 0;
+float scaleObject = 0;
 
 AppFrame::AppFrame(QWidget *parent): QFrame{parent}
 {
@@ -85,18 +85,26 @@ void AppFrame::minusWindowsY(){
     yGlobal -= 10;
 }
 
-void AppFrame::upScale(){
+void AppFrame::plusWindowsScale(){
     SCALE += 50;
 }
 
-void AppFrame::downScale(){
+void AppFrame::downWindowsScale(){
     SCALE = SCALE > 0? SCALE - 50: 0;
 }
 
-void AppFrame::plusAngle() {
+void AppFrame::plusObjectAngle() {
     Angle += 10;
 }
 
-void AppFrame::changeScale() {
-    scaleObject += 1;
+void AppFrame::downObjectAngle() {
+    Angle -= 10;
+}
+
+void AppFrame::plusObjectScale() {
+    scaleObject += 0.25;
+}
+
+void AppFrame::downObjectScale() {
+    scaleObject -= 0.25;
 }
