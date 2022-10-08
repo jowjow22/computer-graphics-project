@@ -28,6 +28,13 @@ void AppFrame::paintEvent(QPaintEvent *event){
     Point p3(200, 100);
     Point p4(100, 100);
 
+    QPoint *p5 = new QPoint(100,200);
+    QPoint *p6 = new QPoint(100,200);
+    QPoint *p7 = new QPoint(100,200);
+    QPoint *p8 = new QPoint(100,200);
+
+    QList<QPoint*> *pointsAlt ={p5,p6,p7,p8;
+
     QList<QPoint> pointsNorm = {QPoint(p1.x, p1.y), QPoint(p2.x, p2.y), QPoint(p3.x, p3.y), QPoint(p4.x, p4.y)};
 
     GeometricTransformation rotateAndScale(150, 150, 1 + scaleObject, 1 + scaleObject, 60 + Angle);
@@ -43,12 +50,25 @@ void AppFrame::paintEvent(QPaintEvent *event){
     Window window(maxVPX, maxVPY, xGlobal, xGlobal+SCALE, yGlobal, yGlobal+SCALE);
     /*window definition*/
 
+
+//    std::cout <<"xmin: "<< window.wXMin <<endl;
+//    std::cout <<"xman: "<< window.wXMax <<endl;
+//    std::cout <<"ymin: "<< window.wYMin <<endl;
+//    std::cout <<"ymax: "<< window.wYMax <<endl;
+
+    QList<QPoint> clipPoints = {{QPoint(-window.wXMax/2+10, window.wYMax/2-10), QPoint(-window.wXMax/2+10, -window.wYMax/2+10), QPoint(window.wXMax/2-10, -window.wYMax/2+10), QPoint(window.wXMax/2-10, window.wYMax/2-10)}};
+
+    Clipping clipObj(clipPoints.at(0).x(),clipPoints.at(1).y(),clipPoints.at(2).x(),clipPoints.at(0).y());
+//    clipObj.calculateRegionCode(&points);
+//    clipObj.calculateRegionCode(&pointsNorm);
     /*viewport definition*/
     QList<GenericObject *> displayFile;
 
+    Rectangle clipRec(window.viewPortTransform(clipPoints));
     Rectangle rectVp(window.viewPortTransform(points));
     Rectangle rectNorm(window.viewPortTransform(pointsNorm));
 
+    displayFile.append(&clipRec);
     displayFile.append(&rectVp);
     displayFile.append(&rectNorm);
     /*viewport definition*/

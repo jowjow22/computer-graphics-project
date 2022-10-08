@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     appframe.cpp \
+    clipping.cpp \
     genericobject.cpp \
     geometrictransformation.cpp \
     line.cpp \
@@ -24,6 +25,7 @@ SOURCES += \
 
 HEADERS += \
     appframe.h \
+    clipping.h \
     genericobject.h \
     geometrictransformation.h \
     line.h \

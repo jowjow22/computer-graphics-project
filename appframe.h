@@ -7,6 +7,7 @@
 #include "window.h"
 #include "genericobject.h"
 #include "point.h"
+#include "clipping.h"
 
 class AppFrame: public QFrame
 {

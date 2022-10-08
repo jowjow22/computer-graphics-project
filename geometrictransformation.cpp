@@ -1,6 +1,8 @@
 #include "geometrictransformation.h"
 #include <math.h>
 #define PI 3.14159265
+#include <QList>
+#include <QPoint>
 
 GeometricTransformation::GeometricTransformation(float dx, float dy, float sx, float sy,float angulo)
 {

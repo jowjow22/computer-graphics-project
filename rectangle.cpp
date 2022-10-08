@@ -1,4 +1,4 @@
-#include "rectangle.h"
+        #include "rectangle.h"
 
 Rectangle::Rectangle(QList<QPoint> points) {
     for(QPoint point : points){
