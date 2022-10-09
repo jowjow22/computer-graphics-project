@@ -56,19 +56,19 @@ void Clipping::defineRegionCode(QPoint point, int regionCode[4]) {
 
 float Clipping::lineEquationLeft(QPoint p1, QPoint p2) {
     float m = (p2.y() - p1.y())/(p2.x() - p1.x());
-    float newY = m*(this->leftX - p1.x()) + p1.y();
+    float newY = m * (this->leftX - p2.x()) + p2.y();
     return newY;
 }
 
 float Clipping::lineEquationRight(QPoint p1, QPoint p2) {
     float m = (p2.y() - p1.y())/(p2.x() - p1.x());
-    float newY = m*(this->rightX - p1.x()) + p1.y();
+    float newY = m * (this->rightX - p2.x()) + p2.y();
     return newY;
 }
 
 float Clipping::lineEquationTop(QPoint p1, QPoint p2) {
     float m = (p2.y() - p1.y())/(p2.x() - p1.x());
-    float newX = p1.x() + 1/m *(this->topY - p1.y());
+    float newX = p1.x() + 1/m * (this->topY - p1.y());
     return newX;
 }
 
@@ -87,9 +87,11 @@ QList<QLine> Clipping::doClipping(QList<QLine> list) {
         QPoint p2 = list.at(i).p2();
         defineRegionCode(p1, regionCode);
         defineRegionCode(p2, regionCode1);
+        std::cout << "p1" << std::endl;
         for(int i = 0; i < 4; i ++) {
             std::cout << regionCode[i] << std::endl;
         }
+        std::cout << "p2" << std::endl;
         for(int i = 0; i < 4; i ++) {
             std::cout << regionCode1[i] << std::endl;
         }
@@ -155,7 +157,7 @@ QList<QLine> Clipping::doClipping(QList<QLine> list) {
             }
             //Right
             if(regionCode[0] == 0 && regionCode[1] == 0 && regionCode[2] == 1 && regionCode[3] == 0) {
-                float newYP1 = lineEquationRight(p1, p2);
+                float newYP1 = lineEquationRight(p2, p1);
                 clippingList.append(QLine(this->rightX, newYP1, p2.x(), p2.y()));
                 break;
             }
@@ -167,8 +169,8 @@ QList<QLine> Clipping::doClipping(QList<QLine> list) {
             }
             //Left
             if(regionCode[0] == 0 && regionCode[1] == 0 && regionCode[2] == 0 && regionCode[3] == 1) {
-                float newXP1 = lineEquationTop(p1, p2);
-                clippingList.append(QLine(this->leftX, newXP1, p2.x(), p2.y()));
+                float newYP1 = lineEquationLeft(p2, p1);
+                clippingList.append(QLine(this->leftX, newYP1, p2.x(), p2.y()));
                 break;
             }
 
