@@ -59,9 +59,10 @@ void AppFrame::paintEvent(QPaintEvent *event){
 //    displayFile.append(&rectVp);
 //    displayFile.append(&rectNorm);
 
-    QList<QLine> teste = {QLine(window.gVPX(-120), window.gVPY(50), window.gVPX(0), window.gVPY(0))};
+    QList<QLine> teste = {QLine(window.gVPX(-120), window.gVPY(50), window.gVPX(0), window.gVPY(0)),
+                         QLine(window.gVPX(120), window.gVPY(50), window.gVPX(0), window.gVPY(0))};
 
-    QList<QLine> testeFinal = frame.doClipping(teste);
+    QList<QLine> testeFinal = frame.listClipping(teste);
 
     /*viewport definition*/
 

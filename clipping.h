@@ -19,7 +19,8 @@ public:
     float lineEquationRight(QPoint p1, QPoint p2);
     float lineEquationTop(QPoint p1, QPoint p2);
     float lineEquationBottom(QPoint p1, QPoint p2);
-    QList<QLine> doClipping(QList<QLine> list);
+    QLine doClipping(QLine line);
+    QList<QLine> listClipping (QList<QLine> list);
     virtual ~Clipping()
     { }
 };
