@@ -79,6 +79,7 @@ float Clipping::lineEquationBottom(QPoint p1, QPoint p2) {
 }
 
 QLine Clipping::doClipping(QLine line) {
+    QList<QLine> list;
     int regionCodeP1[4], regionCodeP2[4];
     QPoint p1(line.p1().x(), line.p1().y());
     QPoint p2(line.p2().x(), line.p2().y());
@@ -132,6 +133,7 @@ QLine Clipping::doClipping(QLine line) {
         }
         return QLine(p1, p2);
     }
+    return QLine();
 }
 
 QList<QLine> Clipping::listClipping(QList<QLine> list) {

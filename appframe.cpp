@@ -25,16 +25,16 @@ AppFrame::AppFrame(QWidget *parent): QFrame{parent}
 void AppFrame::paintEvent(QPaintEvent *event){
     /*world definition in memory*/
     QFrame::paintEvent(event);
-//    Point p1(100, 200);
-//    Point p2(200, 200);
-//    Point p3(200, 100);
-//    Point p4(100, 100);
+    Point p1(100, 200);
+    Point p2(200, 200);
+    Point p3(200, 100);
+    Point p4(100, 100);
 
-//    QList<QPoint> pointsNorm = {QPoint(p1.x, p1.y), QPoint(p2.x, p2.y), QPoint(p3.x, p3.y), QPoint(p4.x, p4.y)};
+    QList<QPoint> pointsNorm = {QPoint(p1.x, p1.y), QPoint(p2.x, p2.y), QPoint(p3.x, p3.y), QPoint(p4.x, p4.y)};
 
-//    GeometricTransformation rotateAndScale(150, 150, 1 + scaleObject, 1 + scaleObject, 60 + Angle);
+    GeometricTransformation rotateAndScale(150, 150, 1 + scaleObject, 1 + scaleObject, 60 + Angle);
 
-//    QList<QPoint> points = rotateAndScale.getGeometricTransformation(pointsNorm);
+    QList<QPoint> points = rotateAndScale.getGeometricTransformation(pointsNorm);
 
     /*world definition in memory*/
 
@@ -53,14 +53,21 @@ void AppFrame::paintEvent(QPaintEvent *event){
 
     Clipping frame(window.viewPortTransform(framePoints));
 
-//    Rectangle rectVp(window.viewPortTransform(points));
-//    Rectangle rectNorm(window.viewPortTransform(pointsNorm));
+    Rectangle rectVp(window.viewPortTransform(points));
+    Rectangle rectNorm(window.viewPortTransform(pointsNorm));
 
 //    displayFile.append(&rectVp);
 //    displayFile.append(&rectNorm);
 
-    QList<QLine> teste = {QLine(window.gVPX(0), window.gVPY(0), window.gVPX(-150), window.gVPY(-150))};
-    QList<QLine> testeFinal = frame.listClipping(teste);
+
+    QList<QLine> rect = {QLine(rectNorm.points.at(0), rectNorm.points.at(1)), QLine(rectNorm.points.at(1), rectNorm.points.at(2)),
+                        QLine(rectNorm.points.at(2), rectNorm.points.at(3)), QLine(rectNorm.points.at(3), rectNorm.points.at(0)),
+                         QLine(rectVp.points.at(0), rectVp.points.at(1)), QLine(rectVp.points.at(1), rectVp.points.at(2)),
+                        QLine(rectVp.points.at(2), rectVp.points.at(3)), QLine(rectVp.points.at(3), rectVp.points.at(0))};
+
+    QList <QLine> line = {QLine(window.gVPX(0), window.gVPY(0), window.gVPX(0), window.gVPY(150))};
+
+    QList<QLine> testeFinal = frame.listClipping(rect);
     /*viewport definition*/
 
     /*draw*/
@@ -70,7 +77,7 @@ void AppFrame::paintEvent(QPaintEvent *event){
     pen.setWidth(5);
 
     painter.setPen(pen);
-
+    std::cout << testeFinal.length() << std::endl;
     for(int i = 0; i < testeFinal.length(); i++) {
         painter.drawLine(testeFinal.at(i));
     }
@@ -102,11 +109,11 @@ void AppFrame::minusWindowsY(){
 }
 
 void AppFrame::plusWindowsScale(){
-    SCALE += 50;
+    SCALE += 25;
 }
 
 void AppFrame::downWindowsScale(){
-    SCALE = SCALE > 0? SCALE - 50: 0;
+    SCALE = SCALE > 0? SCALE - 25: 0;
 }
 
 void AppFrame::plusObjectAngle() {
