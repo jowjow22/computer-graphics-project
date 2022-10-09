@@ -55,130 +55,82 @@ void Clipping::defineRegionCode(QPoint point, int regionCode[4]) {
 }
 
 float Clipping::lineEquationLeft(QPoint p1, QPoint p2) {
-    float m = (p2.y() - p1.y())/(p2.x() - p1.x());
-    float newY = m * (this->leftX - p2.x()) + p2.y();
+    float m = (float) (p2.y() - p1.y())/(p2.x() - p1.x());
+    float newY = m*(this->leftX - p1.x()) + p1.y();
     return newY;
 }
 
 float Clipping::lineEquationRight(QPoint p1, QPoint p2) {
-    float m = (p2.y() - p1.y())/(p2.x() - p1.x());
-    float newY = m * (this->rightX - p2.x()) + p2.y();
+    float m = (float) (p2.y() - p1.y())/(p2.x() - p1.x());
+    float newY = m*(this->rightX - p1.x()) + p1.y();
     return newY;
 }
 
 float Clipping::lineEquationTop(QPoint p1, QPoint p2) {
-    float m = (p2.y() - p1.y())/(p2.x() - p1.x());
-    float newX = p1.x() + 1/m * (this->topY - p1.y());
+    float m = (float) (p2.y() - p1.y())/(p2.x() - p1.x());
+    float newX = p1.x() + (this->topY - p1.y())/m;
     return newX;
 }
 
 float Clipping::lineEquationBottom(QPoint p1, QPoint p2) {
-    float m = (p2.y() - p1.y())/(p2.x() - p1.x());
-    float newX = p1.x() + 1/m * (this->bottomY - p1.y());
+    float m = (float) (p2.y() - p1.y())/(p2.x() - p1.x());
+    float newX = p1.x() + (this->bottomY - p1.y())/m;
     return newX;
 }
 
 QLine Clipping::doClipping(QLine line) {
-    int regionCode[4], regionCode1[4];
-    QPoint p1 = line.p1();
-    QPoint p2 = line.p2();
-    defineRegionCode(p1, regionCode);
-    defineRegionCode(p2, regionCode1);
-    std::cout << "p1" << std::endl;
-    for(int i = 0; i < 4; i ++) {
-        std::cout << regionCode[i] << std::endl;
-    }
-    std::cout << "p2" << std::endl;
-    for(int i = 0; i < 4; i ++) {
-        std::cout << regionCode1[i] << std::endl;
-    }
+    int regionCodeP1[4], regionCodeP2[4];
+    QPoint p1(line.p1().x(), line.p1().y());
+    QPoint p2(line.p2().x(), line.p2().y());
+    defineRegionCode(p1, regionCodeP1);
+    defineRegionCode(p2, regionCodeP2);
     //base case
-    if(regionCode[0] == 0 && regionCode[1] == 0 && regionCode[2] == 0 && regionCode[3] == 0) {
-        //base case
-        if(regionCode1[0] == 0 && regionCode1[1] == 0 && regionCode1[2] == 0 && regionCode1[3] == 0) {
-            return QLine(p1, p2);
+    if(regionCodeP2[0] == 0 && regionCodeP2[1] == 0 && regionCodeP2[2] == 0 && regionCodeP2[3] == 0) {
+        if(regionCodeP1[0] == 1) {
+            float newP1X = lineEquationTop(p1, p2);
+            p1.setX(newP1X);
+            p1.setY(this->topY);
         }
-        //normal cases
-        //Top
-        if(regionCode1[0] == 1 && regionCode1[1] == 0 && regionCode1[2] == 0 && regionCode1[3] == 0) {
-            float newXP2 = lineEquationTop(p1, p2);
-            return QLine(p1.x(), p1.y(), newXP2, this->topY);
+        if(regionCodeP1[1] == 1) {
+            float newP1X = lineEquationBottom(p1, p2);
+            p1.setX(newP1X);
+            p1.setY(this->bottomY);
         }
-        //Right
-        if(regionCode1[0] == 0 && regionCode1[1] == 0 && regionCode1[2] == 1 && regionCode1[3] == 0) {
-            float newYP2 = lineEquationRight(p1, p2);
-            return QLine(p1.x(), p1.y(), this->rightX, newYP2);
+        if(regionCodeP1[2] == 1) {
+            float newP1Y = lineEquationRight(p1, p2);
+            p1.setX(this->rightX);
+            p1.setY(newP1Y);
         }
-        //Bottom
-        if(regionCode1[0] == 0 && regionCode1[1] == 1 && regionCode1[2] == 0 && regionCode1[3] == 0) {
-            float newXP2 = lineEquationBottom(p1, p2);
-            return QLine(p1.x(), p1.y(), newXP2, this->bottomY);
+        if(regionCodeP1[3] == 1) {
+            float newP1Y = lineEquationLeft(p1, p2);
+            p1.setX(this->leftX);
+            p1.setY(newP1Y);
         }
-        //Left
-        if(regionCode1[0] == 0 && regionCode1[1] == 0 && regionCode1[2] == 0 && regionCode1[3] == 1) {
-            float newYP2 = lineEquationLeft(p1, p2);
-            return QLine(p1.x(), p1.y(), this->leftX, newYP2);
-        }
-
-//        //special cases
-//        //Top Left
-//        if(regionCode1[0] == 1 && regionCode1[1] == 0 && regionCode1[2] == 0 && regionCode1[3] == 1) {
-//            return;
-//        }
-//        //Top Right
-//        if(regionCode1[0] == 1 && regionCode1[1] == 0 && regionCode1[2] == 1 && regionCode1[3] == 0) {
-//            return;
-//        }
-//        //Bottom Right
-//        if(regionCode1[0] == 0 && regionCode1[1] == 1 && regionCode1[2] == 1 && regionCode1[3] == 0) {
-//            return;
-//        }
-//        //Bottom Left
-//        if(regionCode1[0] == 0 && regionCode1[1] == 1 && regionCode1[2] == 0 && regionCode1[3] == 1) {
-//            return;
-//        }
+        return QLine(p1, p2);
     }
 
-    if(regionCode1[0] == 0 && regionCode1[1] == 0 && regionCode1[2] == 0 && regionCode1[3] == 0) {
-        //normal cases
-        //Top
-        if(regionCode[0] == 1 && regionCode[1] == 0 && regionCode[2] == 0 && regionCode[3] == 0) {
-            float newXP1 = lineEquationTop(p1, p2);
-            return QLine(newXP1, this->topY, p2.x(), p2.y());
+    if(regionCodeP1[0] == 0 && regionCodeP1[1] == 0 && regionCodeP1[2] == 0 && regionCodeP1[3] == 0) {
+        if(regionCodeP2[0] == 1) {
+            float newP2X = lineEquationTop(p1, p2);
+            p2.setX(newP2X);
+            p2.setY(this->topY);
         }
-        //Right
-        if(regionCode[0] == 0 && regionCode[1] == 0 && regionCode[2] == 1 && regionCode[3] == 0) {
-            float newYP1 = lineEquationRight(p2, p1);
-            return QLine(this->rightX, newYP1, p2.x(), p2.y());
+        if(regionCodeP2[1] == 1) {
+            float newP2X = lineEquationBottom(p1, p2);
+            p2.setX(newP2X);
+            p2.setY(this->bottomY);
         }
-        //Bottom
-        if(regionCode[0] == 0 && regionCode[1] == 1 && regionCode[2] == 0 && regionCode[3] == 0) {
-            float newXP1 = lineEquationBottom(p1, p2);
-            return QLine(newXP1, this->bottomY, p2.x(), p2.y());
+        if(regionCodeP2[2] == 1) {
+            float newP2Y = lineEquationRight(p1, p2);
+            p2.setX(this->rightX);
+            p2.setY(newP2Y);
         }
-        //Left
-        if(regionCode[0] == 0 && regionCode[1] == 0 && regionCode[2] == 0 && regionCode[3] == 1) {
-            float newYP1 = lineEquationLeft(p2, p1);
-            return QLine(this->leftX, newYP1, p2.x(), p2.y());
+        if(regionCodeP2[3] == 1) {
+            float newP2Y = lineEquationLeft(p1, p2);
+            p2.setX(this->leftX);
+            p2.setY(newP2Y);
         }
-
-//        //special cases
-//        //Top Left
-//        if(regionCode[0] == 1 && regionCode[1] == 0 && regionCode[2] == 0 && regionCode[3] == 1) {
-//            return;
-//        }
-//        //Top Right
-//        if(regionCode[0] == 1 && regionCode[1] == 0 && regionCode[2] == 1 && regionCode[3] == 0) {
-//            return;
-//        }
-//        //Bottom Right
-//        if(regionCode[0] == 0 && regionCode[1] == 1 && regionCode[2] == 1 && regionCode[3] == 0) {
-//            return;
-//        }
-//        //Bottom Left
-//        if(regionCode[0] == 0 && regionCode[1] == 1 && regionCode[2] == 0 && regionCode[3] == 1) {
-//            return;
-//        }
+        return QLine(p1, p2);
     }
 }
 

@@ -48,8 +48,8 @@ void AppFrame::paintEvent(QPaintEvent *event){
     /*viewport definition*/
     //QList<GenericObject *> displayFile;
 
-    QList<QPoint> framePoints = {QPoint(-100, 100), QPoint(100, 100),
-                                 QPoint(100, -100), QPoint(-100, -100)};
+    QList<QPoint> framePoints = {QPoint(-100 + xGlobal, 100 + yGlobal), QPoint(100 + xGlobal, 100 + yGlobal),
+                                 QPoint(100 + xGlobal, -100 + yGlobal), QPoint(-100 + xGlobal, -100 + yGlobal)};
 
     Clipping frame(window.viewPortTransform(framePoints));
 
@@ -59,11 +59,8 @@ void AppFrame::paintEvent(QPaintEvent *event){
 //    displayFile.append(&rectVp);
 //    displayFile.append(&rectNorm);
 
-    QList<QLine> teste = {QLine(window.gVPX(-120), window.gVPY(50), window.gVPX(0), window.gVPY(0)),
-                         QLine(window.gVPX(120), window.gVPY(50), window.gVPX(0), window.gVPY(0))};
-
+    QList<QLine> teste = {QLine(window.gVPX(0), window.gVPY(0), window.gVPX(-150), window.gVPY(-150))};
     QList<QLine> testeFinal = frame.listClipping(teste);
-
     /*viewport definition*/
 
     /*draw*/
