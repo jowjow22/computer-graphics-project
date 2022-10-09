@@ -8,6 +8,7 @@ class GenericObject
 {
 public:
     GenericObject();
+    virtual void drawFrame(QPainter *painter);
     virtual void drawObject(QPainter *painter);
     virtual ~GenericObject()
     { }

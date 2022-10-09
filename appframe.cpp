@@ -8,6 +8,8 @@
 #include "translation.h"
 #include "rotation.h"
 #include "geometrictransformation.h"
+#include "clipping.h"
+#include <QLine>
 
 int xGlobal = 0;
 int yGlobal = 0;
@@ -23,16 +25,16 @@ AppFrame::AppFrame(QWidget *parent): QFrame{parent}
 void AppFrame::paintEvent(QPaintEvent *event){
     /*world definition in memory*/
     QFrame::paintEvent(event);
-    Point p1(100,200);
-    Point p2(200,200);
-    Point p3(200, 100);
-    Point p4(100, 100);
+//    Point p1(100, 200);
+//    Point p2(200, 200);
+//    Point p3(200, 100);
+//    Point p4(100, 100);
 
-    QList<QPoint> pointsNorm = {QPoint(p1.x, p1.y), QPoint(p2.x, p2.y), QPoint(p3.x, p3.y), QPoint(p4.x, p4.y)};
+//    QList<QPoint> pointsNorm = {QPoint(p1.x, p1.y), QPoint(p2.x, p2.y), QPoint(p3.x, p3.y), QPoint(p4.x, p4.y)};
 
-    GeometricTransformation rotateAndScale(150, 150, 1 + scaleObject, 1 + scaleObject, 60 + Angle);
+//    GeometricTransformation rotateAndScale(150, 150, 1 + scaleObject, 1 + scaleObject, 60 + Angle);
 
-    QList<QPoint> points = rotateAndScale.getGeometricTransformation(pointsNorm);
+//    QList<QPoint> points = rotateAndScale.getGeometricTransformation(pointsNorm);
 
     /*world definition in memory*/
 
@@ -44,13 +46,23 @@ void AppFrame::paintEvent(QPaintEvent *event){
     /*window definition*/
 
     /*viewport definition*/
-    QList<GenericObject *> displayFile;
+    //QList<GenericObject *> displayFile;
 
-    Rectangle rectVp(window.viewPortTransform(points));
-    Rectangle rectNorm(window.viewPortTransform(pointsNorm));
+    QList<QPoint> framePoints = {QPoint(-100, 100), QPoint(100, 100),
+                                 QPoint(100, -100), QPoint(-100, -100)};
 
-    displayFile.append(&rectVp);
-    displayFile.append(&rectNorm);
+    Clipping frame(window.viewPortTransform(framePoints));
+
+//    Rectangle rectVp(window.viewPortTransform(points));
+//    Rectangle rectNorm(window.viewPortTransform(pointsNorm));
+
+//    displayFile.append(&rectVp);
+//    displayFile.append(&rectNorm);
+
+    QList<QLine> teste = {QLine(window.gVPX(0), window.gVPY(0), window.gVPX(110), window.gVPY(150))};
+
+    QList<QLine> testeFinal = frame.doClipping(teste);
+
     /*viewport definition*/
 
     /*draw*/
@@ -61,9 +73,15 @@ void AppFrame::paintEvent(QPaintEvent *event){
 
     painter.setPen(pen);
 
-    for(GenericObject *list : displayFile){
-        list->drawObject(&painter);
+    for(int i = 0; i < testeFinal.length(); i++) {
+        painter.drawLine(testeFinal.at(i));
     }
+
+    frame.drawFrame(&painter);
+
+//    for(GenericObject *list : displayFile){
+//        list->drawObject(&painter);
+//    }
     /*draw*/
 
     update();
