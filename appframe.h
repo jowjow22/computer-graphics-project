@@ -19,10 +19,12 @@ public:
     void minusWindowsX();
     void plusWindowsY();
     void minusWindowsY();
-    void upScale();
-    void downScale();
-    void plusAngle();
-    void changeScale();
+    void plusWindowsScale();
+    void downWindowsScale();
+    void plusObjectAngle();
+    void downObjectAngle();
+    void plusObjectScale();
+    void downObjectScale();
 
 };
 

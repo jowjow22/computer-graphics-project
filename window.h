@@ -2,7 +2,7 @@
 #define WINDOW_H
 #include <iostream>
 #include <QList>
-#include <QPoint>
+#include <QLine>
 
 class Window
 {
@@ -20,7 +20,8 @@ public:
     float gNormalizedX(float x);
     float gNormalizedY(float y);
     float setWindow();
-    QList<QPoint> viewPortTransform(QList<QPoint> points);
+    QList<QPoint> viewPortTransformPoint(QList<QPoint> points);
+    QList<QLine> viewPortTransformLine(QList<QLine> lines);
 };
 
 #endif // WINDOW_H

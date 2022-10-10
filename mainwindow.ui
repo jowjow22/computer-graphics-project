@@ -39,8 +39,8 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>710</x>
-      <y>90</y>
+      <x>610</x>
+      <y>50</y>
       <width>89</width>
       <height>25</height>
      </rect>
@@ -56,8 +56,8 @@ color: rgb(0, 0, 0);</string>
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>710</x>
-      <y>130</y>
+      <x>610</x>
+      <y>90</y>
       <width>89</width>
       <height>25</height>
      </rect>
@@ -73,8 +73,8 @@ color: rgb(0, 0, 0);</string>
    <widget class="QPushButton" name="pushButton_3">
     <property name="geometry">
      <rect>
-      <x>710</x>
-      <y>170</y>
+      <x>720</x>
+      <y>50</y>
       <width>89</width>
       <height>25</height>
      </rect>
@@ -90,8 +90,8 @@ color: rgb(0, 0, 0);</string>
    <widget class="QPushButton" name="pushButton_4">
     <property name="geometry">
      <rect>
-      <x>710</x>
-      <y>210</y>
+      <x>720</x>
+      <y>90</y>
       <width>89</width>
       <height>25</height>
      </rect>
@@ -107,8 +107,8 @@ color: rgb(0, 0, 0);</string>
    <widget class="QPushButton" name="pushButton_5">
     <property name="geometry">
      <rect>
-      <x>710</x>
-      <y>250</y>
+      <x>610</x>
+      <y>130</y>
       <width>89</width>
       <height>25</height>
      </rect>
@@ -124,8 +124,8 @@ color: rgb(0, 0, 0);</string>
    <widget class="QPushButton" name="pushButton_6">
     <property name="geometry">
      <rect>
-      <x>710</x>
-      <y>290</y>
+      <x>720</x>
+      <y>130</y>
       <width>89</width>
       <height>25</height>
      </rect>
@@ -141,27 +141,133 @@ color: rgb(0, 0, 0);</string>
    <widget class="QPushButton" name="pushButton_7">
     <property name="geometry">
      <rect>
-      <x>710</x>
-      <y>330</y>
-      <width>89</width>
+      <x>670</x>
+      <y>210</y>
+      <width>31</width>
       <height>25</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(98, 160, 234);
+color: rgb(0, 0, 0);</string>
+    </property>
     <property name="text">
-     <string>Angle</string>
+     <string>+</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_10">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>210</y>
+      <width>31</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(98, 160, 234);
+color: rgb(0, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>-</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>210</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>Angle:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>250</y>
+      <width>67</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>Scale:</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_8">
     <property name="geometry">
      <rect>
-      <x>710</x>
-      <y>370</y>
-      <width>89</width>
+      <x>670</x>
+      <y>250</y>
+      <width>31</width>
       <height>25</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(98, 160, 234);
+color: rgb(0, 0, 0);</string>
+    </property>
     <property name="text">
-     <string>Scale</string>
+     <string>+</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_9">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>250</y>
+      <width>31</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(98, 160, 234);
+color: rgb(0, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>-</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>20</y>
+      <width>121</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>Window Settings:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>180</y>
+      <width>121</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>Object Settings:</string>
     </property>
    </widget>
   </widget>
@@ -188,11 +294,12 @@ color: rgb(0, 0, 0);</string>
     <slot>plusWindowsY()</slot>
     <slot>minusWindowsX()</slot>
     <slot>minusWindowsY()</slot>
-    <slot>upScale()</slot>
-    <slot>downScale()</slot>
-    <slot>plusAngle()</slot>
-    <slot>plusDist()</slot>
-    <slot>changeScale()</slot>
+    <slot>downWindowsScale()</slot>
+    <slot>plusWindowsScale()</slot>
+    <slot>downObjectAngle()</slot>
+    <slot>plusObjectAngle()</slot>
+    <slot>downObjectScale()</slot>
+    <slot>plusObjectScale()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -205,12 +312,12 @@ color: rgb(0, 0, 0);</string>
    <slot>plusWindowsX()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>764</x>
-     <y>112</y>
+     <x>664</x>
+     <y>85</y>
     </hint>
     <hint type="destinationlabel">
-     <x>477</x>
-     <y>90</y>
+     <x>481</x>
+     <y>65</y>
     </hint>
    </hints>
   </connection>
@@ -221,12 +328,12 @@ color: rgb(0, 0, 0);</string>
    <slot>plusWindowsY()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>731</x>
-     <y>164</y>
+     <x>631</x>
+     <y>116</y>
     </hint>
     <hint type="destinationlabel">
-     <x>482</x>
-     <y>162</y>
+     <x>488</x>
+     <y>124</y>
     </hint>
    </hints>
   </connection>
@@ -237,12 +344,12 @@ color: rgb(0, 0, 0);</string>
    <slot>minusWindowsX()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>716</x>
-     <y>209</y>
+     <x>726</x>
+     <y>76</y>
     </hint>
     <hint type="destinationlabel">
-     <x>509</x>
-     <y>200</y>
+     <x>519</x>
+     <y>96</y>
     </hint>
    </hints>
   </connection>
@@ -253,12 +360,12 @@ color: rgb(0, 0, 0);</string>
    <slot>minusWindowsY()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>739</x>
-     <y>247</y>
+     <x>749</x>
+     <y>116</y>
     </hint>
     <hint type="destinationlabel">
-     <x>493</x>
-     <y>244</y>
+     <x>498</x>
+     <y>151</y>
     </hint>
    </hints>
   </connection>
@@ -266,15 +373,15 @@ color: rgb(0, 0, 0);</string>
    <sender>pushButton_5</sender>
    <signal>clicked()</signal>
    <receiver>frame</receiver>
-   <slot>upScale()</slot>
+   <slot>plusWindowsScale()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>743</x>
-     <y>287</y>
+     <x>656</x>
+     <y>168</y>
     </hint>
     <hint type="destinationlabel">
-     <x>526</x>
-     <y>286</y>
+     <x>528</x>
+     <y>174</y>
     </hint>
    </hints>
   </connection>
@@ -282,15 +389,31 @@ color: rgb(0, 0, 0);</string>
    <sender>pushButton_6</sender>
    <signal>clicked()</signal>
    <receiver>frame</receiver>
-   <slot>downScale()</slot>
+   <slot>downWindowsScale()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>740</x>
-     <y>322</y>
+     <x>767</x>
+     <y>170</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>513</x>
+     <y>194</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_10</sender>
+   <signal>clicked()</signal>
+   <receiver>frame</receiver>
+   <slot>downObjectAngle()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>681</x>
+     <y>242</y>
     </hint>
     <hint type="destinationlabel">
      <x>515</x>
-     <y>334</y>
+     <y>243</y>
     </hint>
    </hints>
   </connection>
@@ -298,15 +421,31 @@ color: rgb(0, 0, 0);</string>
    <sender>pushButton_7</sender>
    <signal>clicked()</signal>
    <receiver>frame</receiver>
-   <slot>plusAngle()</slot>
+   <slot>plusObjectAngle()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>729</x>
-     <y>363</y>
+     <x>735</x>
+     <y>250</y>
     </hint>
     <hint type="destinationlabel">
-     <x>531</x>
-     <y>361</y>
+     <x>433</x>
+     <y>263</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_9</sender>
+   <signal>clicked()</signal>
+   <receiver>frame</receiver>
+   <slot>downObjectScale()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>688</x>
+     <y>283</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>494</x>
+     <y>294</y>
     </hint>
    </hints>
   </connection>
@@ -314,15 +453,15 @@ color: rgb(0, 0, 0);</string>
    <sender>pushButton_8</sender>
    <signal>clicked()</signal>
    <receiver>frame</receiver>
-   <slot>changeScale()</slot>
+   <slot>plusObjectScale()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>733</x>
-     <y>404</y>
+     <x>729</x>
+     <y>280</y>
     </hint>
     <hint type="destinationlabel">
-     <x>510</x>
-     <y>404</y>
+     <x>492</x>
+     <y>317</y>
     </hint>
    </hints>
   </connection>

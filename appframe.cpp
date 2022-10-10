@@ -8,12 +8,15 @@
 #include "translation.h"
 #include "rotation.h"
 #include "geometrictransformation.h"
+#include "clipping.h"
+#include <QLine>
+#include "house.h"
 
 int xGlobal = 0;
 int yGlobal = 0;
 int SCALE = 300;
 int Angle = 0;
-int scaleObject = 0;
+float scaleObject = 0;
 
 AppFrame::AppFrame(QWidget *parent): QFrame{parent}
 {
@@ -23,8 +26,8 @@ AppFrame::AppFrame(QWidget *parent): QFrame{parent}
 void AppFrame::paintEvent(QPaintEvent *event){
     /*world definition in memory*/
     QFrame::paintEvent(event);
-    Point p1(100,200);
-    Point p2(200,200);
+    Point p1(100, 200);
+    Point p2(200, 200);
     Point p3(200, 100);
     Point p4(100, 100);
 
@@ -44,13 +47,42 @@ void AppFrame::paintEvent(QPaintEvent *event){
     /*window definition*/
 
     /*viewport definition*/
-    QList<GenericObject *> displayFile;
+    //QList<GenericObject *> displayFile;
 
-    Rectangle rectVp(window.viewPortTransform(points));
-    Rectangle rectNorm(window.viewPortTransform(pointsNorm));
+    QList<QPoint> framePoints = {QPoint(-100 + xGlobal, 100 + yGlobal), QPoint(100 + xGlobal, 100 + yGlobal),
+                                 QPoint(100 + xGlobal, -100 + yGlobal), QPoint(-100 + xGlobal, -100 + yGlobal)};
 
-    displayFile.append(&rectVp);
-    displayFile.append(&rectNorm);
+    Clipping frame(window.viewPortTransformPoint(framePoints));
+
+    Rectangle rectVp(window.viewPortTransformPoint(points));
+    Rectangle rectNorm(window.viewPortTransformPoint(pointsNorm));
+
+//    displayFile.append(&rectVp);
+//    displayFile.append(&rectNorm);
+
+
+    QList<QLine> rect = {QLine(rectNorm.points.at(0), rectNorm.points.at(1)), QLine(rectNorm.points.at(1), rectNorm.points.at(2)),
+                        QLine(rectNorm.points.at(2), rectNorm.points.at(3)), QLine(rectNorm.points.at(3), rectNorm.points.at(0)),
+                         QLine(rectVp.points.at(0), rectVp.points.at(1)), QLine(rectVp.points.at(1), rectVp.points.at(2)),
+                        QLine(rectVp.points.at(2), rectVp.points.at(3)), QLine(rectVp.points.at(3), rectVp.points.at(0))};
+
+    House house1(-100,10);
+
+    QList<QLine> testViewPort = window.viewPortTransformLine(house1.houseBuilder());
+
+    House house2(-500,50);
+
+    QList<QLine> testViewPort1 = window.viewPortTransformLine(house2.houseBuilder());
+
+    House house3(0,200);
+
+    QList<QLine> testViewPort2 = window.viewPortTransformLine(house3.houseBuilder());
+
+    QList <QLine> line = {QLine(window.gVPX(0), window.gVPY(0), window.gVPX(0), window.gVPY(150))};
+
+    QList<QLine> testeFinal = frame.listClipping(testViewPort);
+    QList<QLine> testeFinal1 = frame.listClipping(testViewPort1);
+    QList<QLine> testeFinal2 = frame.listClipping(testViewPort2);
     /*viewport definition*/
 
     /*draw*/
@@ -60,10 +92,25 @@ void AppFrame::paintEvent(QPaintEvent *event){
     pen.setWidth(5);
 
     painter.setPen(pen);
-
-    for(GenericObject *list : displayFile){
-        list->drawObject(&painter);
+    std::cout << testeFinal.length() << std::endl;
+    for(int i = 0; i < testeFinal.length(); i++) {
+        painter.drawLine(testeFinal.at(i));
     }
+
+    for(int i = 0; i < testeFinal1.length(); i++) {
+        painter.drawLine(testeFinal1.at(i));
+    }
+
+    for(int i = 0; i < testeFinal2.length(); i++) {
+        painter.drawLine(testeFinal2.at(i));
+    }
+
+
+    frame.drawFrame(&painter);
+
+//    for(GenericObject *list : displayFile){
+//        list->drawObject(&painter);
+//    }
     /*draw*/
 
     update();
@@ -85,18 +132,26 @@ void AppFrame::minusWindowsY(){
     yGlobal -= 10;
 }
 
-void AppFrame::upScale(){
-    SCALE += 50;
+void AppFrame::plusWindowsScale(){
+    SCALE += 25;
 }
 
-void AppFrame::downScale(){
-    SCALE = SCALE > 0? SCALE - 50: 0;
+void AppFrame::downWindowsScale(){
+    SCALE = SCALE > 0? SCALE - 25: 0;
 }
 
-void AppFrame::plusAngle() {
+void AppFrame::plusObjectAngle() {
     Angle += 10;
 }
 
-void AppFrame::changeScale() {
-    scaleObject += 1;
+void AppFrame::downObjectAngle() {
+    Angle -= 10;
+}
+
+void AppFrame::plusObjectScale() {
+    scaleObject += 0.25;
+}
+
+void AppFrame::downObjectScale() {
+    scaleObject -= 0.25;
 }

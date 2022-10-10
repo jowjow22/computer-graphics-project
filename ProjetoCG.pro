@@ -10,8 +10,10 @@ CONFIG += c++17
 
 SOURCES += \
     appframe.cpp \
+    clipping.cpp \
     genericobject.cpp \
     geometrictransformation.cpp \
+    house.cpp \
     line.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -24,8 +26,10 @@ SOURCES += \
 
 HEADERS += \
     appframe.h \
+    clipping.h \
     genericobject.h \
     geometrictransformation.h \
+    house.h \
     line.h \
     mainwindow.h \
     point.h \
