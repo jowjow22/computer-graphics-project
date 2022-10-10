@@ -10,6 +10,7 @@
 #include "geometrictransformation.h"
 #include "clipping.h"
 #include <QLine>
+#include "house.h"
 
 int xGlobal = 0;
 int yGlobal = 0;
@@ -51,10 +52,10 @@ void AppFrame::paintEvent(QPaintEvent *event){
     QList<QPoint> framePoints = {QPoint(-100 + xGlobal, 100 + yGlobal), QPoint(100 + xGlobal, 100 + yGlobal),
                                  QPoint(100 + xGlobal, -100 + yGlobal), QPoint(-100 + xGlobal, -100 + yGlobal)};
 
-    Clipping frame(window.viewPortTransform(framePoints));
+    Clipping frame(window.viewPortTransformPoint(framePoints));
 
-    Rectangle rectVp(window.viewPortTransform(points));
-    Rectangle rectNorm(window.viewPortTransform(pointsNorm));
+    Rectangle rectVp(window.viewPortTransformPoint(points));
+    Rectangle rectNorm(window.viewPortTransformPoint(pointsNorm));
 
 //    displayFile.append(&rectVp);
 //    displayFile.append(&rectNorm);
@@ -65,9 +66,23 @@ void AppFrame::paintEvent(QPaintEvent *event){
                          QLine(rectVp.points.at(0), rectVp.points.at(1)), QLine(rectVp.points.at(1), rectVp.points.at(2)),
                         QLine(rectVp.points.at(2), rectVp.points.at(3)), QLine(rectVp.points.at(3), rectVp.points.at(0))};
 
+    House house1(-100,10);
+
+    QList<QLine> testViewPort = window.viewPortTransformLine(house1.houseBuilder());
+
+    House house2(-500,50);
+
+    QList<QLine> testViewPort1 = window.viewPortTransformLine(house2.houseBuilder());
+
+    House house3(0,200);
+
+    QList<QLine> testViewPort2 = window.viewPortTransformLine(house3.houseBuilder());
+
     QList <QLine> line = {QLine(window.gVPX(0), window.gVPY(0), window.gVPX(0), window.gVPY(150))};
 
-    QList<QLine> testeFinal = frame.listClipping(rect);
+    QList<QLine> testeFinal = frame.listClipping(testViewPort);
+    QList<QLine> testeFinal1 = frame.listClipping(testViewPort1);
+    QList<QLine> testeFinal2 = frame.listClipping(testViewPort2);
     /*viewport definition*/
 
     /*draw*/
@@ -81,6 +96,15 @@ void AppFrame::paintEvent(QPaintEvent *event){
     for(int i = 0; i < testeFinal.length(); i++) {
         painter.drawLine(testeFinal.at(i));
     }
+
+    for(int i = 0; i < testeFinal1.length(); i++) {
+        painter.drawLine(testeFinal1.at(i));
+    }
+
+    for(int i = 0; i < testeFinal2.length(); i++) {
+        painter.drawLine(testeFinal2.at(i));
+    }
+
 
     frame.drawFrame(&painter);
 

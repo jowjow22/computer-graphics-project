@@ -45,10 +45,18 @@ float Window::gVPY(float y){
     return this->gNormalizedY(y)*this->vpMaxY;
 }
 
-QList<QPoint> Window::viewPortTransform(QList<QPoint> points){
+QList<QPoint> Window::viewPortTransformPoint(QList<QPoint> points){
     QList<QPoint> viewPortPoints;
     for(QPoint point : points){
         viewPortPoints.append(QPoint(this->gVPX(point.x()), this->gVPY(point.y())));
     }
     return viewPortPoints;
+}
+
+QList<QLine> Window::viewPortTransformLine(QList<QLine> lines){
+    QList<QLine> viewPortLines;
+    for(QLine line : lines){
+        viewPortLines.append(QLine(this->gVPX(line.x1()), this->gVPY(line.y1()), this->gVPX(line.x2()), this->gVPY(line.y2())));
+    }
+    return viewPortLines;
 }
