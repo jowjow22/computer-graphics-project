@@ -11,6 +11,7 @@ CONFIG += c++17
 SOURCES += \
     appframe.cpp \
     clipping.cpp \
+    elementscombobox.cpp \
     genericobject.cpp \
     geometrictransformation.cpp \
     house.cpp \
@@ -27,6 +28,7 @@ SOURCES += \
 HEADERS += \
     appframe.h \
     clipping.h \
+    elementscombobox.h \
     genericobject.h \
     geometrictransformation.h \
     house.h \

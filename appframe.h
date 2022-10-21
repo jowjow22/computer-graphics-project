@@ -12,6 +12,7 @@ class AppFrame: public QFrame
 {
 public:
     AppFrame(QWidget *parent = nullptr);
+    QList<QList<QLine>> worldObjectList;
     virtual void paintEvent(QPaintEvent *event);
     void coordsWindowToViewport(QList<GenericObject *> *displayFile, Window window, Point *p);
     void addPointToDisplayFile(QList<GenericObject *> *displayFile, Point *p);

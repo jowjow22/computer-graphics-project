@@ -4,12 +4,17 @@
 #include <QLine>
 #include <QList>
 
-class House
+class House: public QLine
 {
 public:
     House(int x, int y);
-    int x, y;
+    static int housesAmount;
+    QString houseName;
     QList<QLine> houseBuilder();
+    int getHouseIdentifier();
+private:
+    int x, y;
+    int houseIdentifier;
 };
 
 #endif // HOUSE_H

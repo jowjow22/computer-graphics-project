@@ -10,6 +10,8 @@
 #include "geometrictransformation.h"
 #include "clipping.h"
 #include <QLine>
+#include "mainwindow.h"
+#include "elementscombobox.h"
 #include "house.h"
 
 int xGlobal = 0;
@@ -18,9 +20,20 @@ int SCALE = 300;
 int Angle = 0;
 float scaleObject = 0;
 
+
 AppFrame::AppFrame(QWidget *parent): QFrame{parent}
 {
+    QList<House> houses = {House(-100,10), House(-500,50), House(0,200)};
 
+
+
+
+
+    for(House house : houses){
+       house.houseName = "House" + QString::number(house.getHouseIdentifier());
+       ElementsComboBox::AddObject(house.houseName);
+       this->worldObjectList.append(house.houseBuilder());
+    }
 }
 
 void AppFrame::paintEvent(QPaintEvent *event){
@@ -36,6 +49,7 @@ void AppFrame::paintEvent(QPaintEvent *event){
     GeometricTransformation rotateAndScale(150, 150, 1 + scaleObject, 1 + scaleObject, 60 + Angle);
 
     QList<QPoint> points = rotateAndScale.getGeometricTransformation(pointsNorm);
+
 
     /*world definition in memory*/
 
@@ -61,24 +75,17 @@ void AppFrame::paintEvent(QPaintEvent *event){
 //    displayFile.append(&rectNorm);
 
 
-    QList<QLine> rect = {QLine(rectNorm.points.at(0), rectNorm.points.at(1)), QLine(rectNorm.points.at(1), rectNorm.points.at(2)),
-                        QLine(rectNorm.points.at(2), rectNorm.points.at(3)), QLine(rectNorm.points.at(3), rectNorm.points.at(0)),
-                         QLine(rectVp.points.at(0), rectVp.points.at(1)), QLine(rectVp.points.at(1), rectVp.points.at(2)),
-                        QLine(rectVp.points.at(2), rectVp.points.at(3)), QLine(rectVp.points.at(3), rectVp.points.at(0))};
 
-    House house1(-100,10);
 
-    QList<QLine> testViewPort = window.viewPortTransformLine(house1.houseBuilder());
+    QList<QLine> testViewPort = window.viewPortTransformLine(this->worldObjectList[0]);
 
-    House house2(-500,50);
 
-    QList<QLine> testViewPort1 = window.viewPortTransformLine(house2.houseBuilder());
 
-    House house3(0,200);
+    QList<QLine> testViewPort1 = window.viewPortTransformLine(this->worldObjectList[1]);
 
-    QList<QLine> testViewPort2 = window.viewPortTransformLine(house3.houseBuilder());
 
-    QList <QLine> line = {QLine(window.gVPX(0), window.gVPY(0), window.gVPX(0), window.gVPY(150))};
+    QList<QLine> testViewPort2 = window.viewPortTransformLine(this->worldObjectList[2]);
+
 
     QList<QLine> testeFinal = frame.listClipping(testViewPort);
     QList<QLine> testeFinal1 = frame.listClipping(testViewPort1);
@@ -92,7 +99,6 @@ void AppFrame::paintEvent(QPaintEvent *event){
     pen.setWidth(5);
 
     painter.setPen(pen);
-    std::cout << testeFinal.length() << std::endl;
     for(int i = 0; i < testeFinal.length(); i++) {
         painter.drawLine(testeFinal.at(i));
     }

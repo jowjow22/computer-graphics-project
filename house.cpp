@@ -1,9 +1,17 @@
 #include "house.h"
 
+int House::housesAmount = 0;
+
 House::House(int x, int y)
 {
+    housesAmount += 1;
+    this->houseIdentifier = housesAmount;
     this->x = x;
     this->y = y;
+}
+
+int House::getHouseIdentifier(){
+    return this->houseIdentifier;
 }
 
 QList<QLine> House::houseBuilder(){
