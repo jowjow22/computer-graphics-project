@@ -1,7 +1,4 @@
 #include "appframe.h"
-#include "line.h"
-#include "point.h"
-#include "rectangle.h"
 #include <QScreen>
 #include "window.h"
 #include "scale.h"
@@ -10,7 +7,6 @@
 #include "geometrictransformation.h"
 #include "clipping.h"
 #include <QLine>
-#include "mainwindow.h"
 #include "elementscombobox.h"
 #include "house.h"
 
@@ -19,6 +15,8 @@ int yGlobal = 0;
 int SCALE = 300;
 int Angle = 0;
 float scaleObject = 0;
+int maxVPX;
+int maxVPY;
 
 
 AppFrame::AppFrame(QWidget *parent): QFrame{parent}
@@ -37,87 +35,51 @@ AppFrame::AppFrame(QWidget *parent): QFrame{parent}
 }
 
 void AppFrame::paintEvent(QPaintEvent *event){
-    /*world definition in memory*/
     QFrame::paintEvent(event);
-    Point p1(100, 200);
-    Point p2(200, 200);
-    Point p3(200, 100);
-    Point p4(100, 100);
+    QPainter painter(this);
+    QPen pen;
+    pen.setColor(Qt::red);
+    pen.setWidth(5);
+    painter.setPen(pen);
 
-    QList<QPoint> pointsNorm = {QPoint(p1.x, p1.y), QPoint(p2.x, p2.y), QPoint(p3.x, p3.y), QPoint(p4.x, p4.y)};
+    maxVPX = this->width();
+    maxVPY = this->height();
+
+    QList<QList<QLine>> viewPortObjects;
 
     GeometricTransformation rotateAndScale(150, 150, 1 + scaleObject, 1 + scaleObject, 60 + Angle);
 
-    QList<QPoint> points = rotateAndScale.getGeometricTransformation(pointsNorm);
-
-
-    /*world definition in memory*/
-
-    /*window definition*/
-    int maxVPX = this->width();
-    int maxVPY = this->height();
 
     Window window(maxVPX, maxVPY, xGlobal, xGlobal+SCALE, yGlobal, yGlobal+SCALE);
-    /*window definition*/
-
-    /*viewport definition*/
-    //QList<GenericObject *> displayFile;
 
     QList<QPoint> framePoints = {QPoint(-100 + xGlobal, 100 + yGlobal), QPoint(100 + xGlobal, 100 + yGlobal),
                                  QPoint(100 + xGlobal, -100 + yGlobal), QPoint(-100 + xGlobal, -100 + yGlobal)};
 
     Clipping frame(window.viewPortTransformPoint(framePoints));
 
-    Rectangle rectVp(window.viewPortTransformPoint(points));
-    Rectangle rectNorm(window.viewPortTransformPoint(pointsNorm));
-
-//    displayFile.append(&rectVp);
-//    displayFile.append(&rectNorm);
 
 
 
-
-    QList<QLine> testViewPort = window.viewPortTransformLine(this->worldObjectList[0]);
-
-
-
-    QList<QLine> testViewPort1 = window.viewPortTransformLine(this->worldObjectList[1]);
+    for(QList<QLine>& object : this->worldObjectList){
+        viewPortObjects.append(frame.listClipping(window.viewPortTransformLine(object)));
+    }
 
 
-    QList<QLine> testViewPort2 = window.viewPortTransformLine(this->worldObjectList[2]);
-
-
-    QList<QLine> testeFinal = frame.listClipping(testViewPort);
-    QList<QLine> testeFinal1 = frame.listClipping(testViewPort1);
-    QList<QLine> testeFinal2 = frame.listClipping(testViewPort2);
     /*viewport definition*/
 
     /*draw*/
-    QPainter painter(this);
-    QPen pen;
-    pen.setColor(Qt::red);
-    pen.setWidth(5);
 
-    painter.setPen(pen);
-    for(int i = 0; i < testeFinal.length(); i++) {
-        painter.drawLine(testeFinal.at(i));
+
+
+    for(QList<QLine>& object : viewPortObjects){
+        for(int i = 0; i < object.length(); i++) {
+            painter.drawLine(object.at(i));
+        }
     }
 
-    for(int i = 0; i < testeFinal1.length(); i++) {
-        painter.drawLine(testeFinal1.at(i));
-    }
-
-    for(int i = 0; i < testeFinal2.length(); i++) {
-        painter.drawLine(testeFinal2.at(i));
-    }
 
 
     frame.drawFrame(&painter);
-
-//    for(GenericObject *list : displayFile){
-//        list->drawObject(&painter);
-//    }
-    /*draw*/
 
     update();
 }
