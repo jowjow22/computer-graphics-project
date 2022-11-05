@@ -1,11 +1,10 @@
 #include "appframe.h"
 #include <QScreen>
 #include "window.h"
-#include "scale.h"
-#include "translation.h"
-#include "rotation.h"
-#include "geometrictransformation.h"
 #include "clipping.h"
+#include "translation3d.h"
+#include "rotation3d.h"
+#include "scale3d.h"
 #include <QLine>
 #include "elementscombobox.h"
 #include "house.h"
@@ -47,18 +46,12 @@ void AppFrame::paintEvent(QPaintEvent *event){
 
     QList<QList<QLine>> viewPortObjects;
 
-    GeometricTransformation rotateAndScale(150, 150, 1 + scaleObject, 1 + scaleObject, 60 + Angle);
-
-
     Window window(maxVPX, maxVPY, xGlobal, xGlobal+SCALE, yGlobal, yGlobal+SCALE);
 
     QList<QPoint> framePoints = {QPoint(-100 + xGlobal, 100 + yGlobal), QPoint(100 + xGlobal, 100 + yGlobal),
                                  QPoint(100 + xGlobal, -100 + yGlobal), QPoint(-100 + xGlobal, -100 + yGlobal)};
 
     Clipping frame(window.viewPortTransformPoint(framePoints));
-
-
-
 
     for(QList<QLine>& object : this->worldObjectList){
         viewPortObjects.append(frame.listClipping(window.viewPortTransformLine(object)));

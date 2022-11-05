@@ -13,16 +13,15 @@ SOURCES += \
     clipping.cpp \
     elementscombobox.cpp \
     genericobject.cpp \
-    geometrictransformation.cpp \
     house.cpp \
     line.cpp \
     main.cpp \
     mainwindow.cpp \
     point.cpp \
     rectangle.cpp \
-    rotation.cpp \
-    scale.cpp \
-    translation.cpp \
+    rotation3d.cpp \
+    scale3d.cpp \
+    translation3d.cpp \
     window.cpp
 
 HEADERS += \
@@ -30,15 +29,14 @@ HEADERS += \
     clipping.h \
     elementscombobox.h \
     genericobject.h \
-    geometrictransformation.h \
     house.h \
     line.h \
     mainwindow.h \
     point.h \
     rectangle.h \
-    rotation.h \
-    scale.h \
-    translation.h \
+    rotation3d.h \
+    scale3d.h \
+    translation3d.h \
     window.h
 
 FORMS += \
