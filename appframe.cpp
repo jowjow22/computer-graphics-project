@@ -62,8 +62,6 @@ void AppFrame::paintEvent(QPaintEvent *event){
 
     /*draw*/
 
-
-
     for(QList<QLine>& object : viewPortObjects){
         for(int i = 0; i < object.length(); i++) {
             painter.drawLine(object.at(i));

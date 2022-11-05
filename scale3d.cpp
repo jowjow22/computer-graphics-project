@@ -67,7 +67,7 @@ void Scale3D::clearAllMatrix() {
     }
 }
 
-void Scale3D::doTranslation() {
+void Scale3D::doScale() {
     allocatesP();
     allocatesS();
     allocatesPNew();
@@ -78,17 +78,17 @@ void Scale3D::doTranslation() {
     clearAllMatrix();
 }
 
-float Scale3D::getTranslationX() {
-    doTranslation();
+float Scale3D::getScaleX() {
+    doScale();
     return this->xNew;
 }
 
-float Scale3D::getTranslationY() {
-    doTranslation();
+float Scale3D::getScaleY() {
+    doScale();
     return this->yNew;
 }
 
-float Scale3D::getTranslationZ() {
-    doTranslation();
+float Scale3D::getScaleZ() {
+    doScale();
     return this->zNew;
 }

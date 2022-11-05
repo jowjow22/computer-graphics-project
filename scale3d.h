@@ -21,10 +21,10 @@ public:
     void allocatesPNew();
     void multiplicationMatrix();
     void clearAllMatrix();
-    void doTranslation();
-    float getTranslationX();
-    float getTranslationY();
-    float getTranslationZ();
+    void doScale();
+    float getScaleX();
+    float getScaleY();
+    float getScaleZ();
 };
 
 #endif // SCALE3D_H
