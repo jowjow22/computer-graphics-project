@@ -1,8 +1,8 @@
 #ifndef READOBJ_H
 #define READOBJ_H
 
-#include <QPoint>
 #include <QList>
+#include "point.h"
 #include<iostream>
 #include<fstream>
 #include <string>
@@ -13,6 +13,8 @@ class ReadObj
 {
 public:
     ReadObj();
+    QList<Point> readPoints;
+    bool FLAG;
     void fileObjReader(char* filePath);
 };
 

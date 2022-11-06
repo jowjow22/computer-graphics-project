@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 8.0.1, 2022-11-05T21:47:25. -->
+<!-- Written by QtCreator 8.0.1, 2022-11-06T17:10:48. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
-  <value type="QByteArray">{f4e093f0-bbe8-43b7-8bea-20d9843feec4}</value>
+  <value type="QByteArray">{30ebb53f-1190-4414-9032-dec255b22da7}</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -86,16 +86,16 @@
   <variable>ProjectExplorer.Project.Target.0</variable>
   <valuemap type="QVariantMap">
    <value type="QString" key="DeviceType">Desktop</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Desktop Qt 6.3.1 GCC 64bit</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Desktop Qt 6.3.1 GCC 64bit</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">qt.qt6.631.gcc_64_kit</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Desktop</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Desktop</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{89e68cbb-8e70-4793-987a-90873d376e63}</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveBuildConfiguration">0</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.0">
     <value type="int" key="EnableQmlDebugging">0</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/elquiasjr/Documents/build-ProjetoCG-Desktop_Qt_6_3_1_GCC_64bit-Debug</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/home/elquiasjr/Documents/build-ProjetoCG-Desktop_Qt_6_3_1_GCC_64bit-Debug</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/felipe-izidorio/Documentos/UTFPR/4 período/Computação Gráfica/GitHub-Trabalho/build-ProjetoCG-Desktop-Debug</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/home/felipe-izidorio/Documentos/UTFPR/4 período/Computação Gráfica/GitHub-Trabalho/build-ProjetoCG-Desktop-Debug</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -133,13 +133,13 @@
     <value type="int" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildConfiguration">2</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.1">
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/elquiasjr/Documents/build-ProjetoCG-Desktop_Qt_6_3_1_GCC_64bit-Release</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/home/elquiasjr/Documents/build-ProjetoCG-Desktop_Qt_6_3_1_GCC_64bit-Release</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/felipe-izidorio/Documentos/UTFPR/4 período/Computação Gráfica/GitHub-Trabalho/build-ProjetoCG-Desktop-Release</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/home/felipe-izidorio/Documentos/UTFPR/4 período/Computação Gráfica/GitHub-Trabalho/build-ProjetoCG-Desktop-Release</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">QtProjectManager.QMakeBuildStep</value>
-      <value type="bool" key="QtProjectManager.QMakeBuildStep.QMakeForced">false</value>
+      <value type="bool" key="QtProjectManager.QMakeBuildStep.QMakeForced">true</value>
       <valuelist type="QVariantList" key="QtProjectManager.QMakeBuildStep.SelectedAbis"/>
      </valuemap>
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.1">
@@ -174,13 +174,13 @@
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.2">
     <value type="int" key="EnableQmlDebugging">0</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/elquiasjr/Documents/build-ProjetoCG-Desktop_Qt_6_3_1_GCC_64bit-Profile</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/home/elquiasjr/Documents/build-ProjetoCG-Desktop_Qt_6_3_1_GCC_64bit-Profile</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/felipe-izidorio/Documentos/UTFPR/4 período/Computação Gráfica/GitHub-Trabalho/build-ProjetoCG-Desktop-Profile</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/home/felipe-izidorio/Documentos/UTFPR/4 período/Computação Gráfica/GitHub-Trabalho/build-ProjetoCG-Desktop-Profile</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">QtProjectManager.QMakeBuildStep</value>
-      <value type="bool" key="QtProjectManager.QMakeBuildStep.QMakeForced">false</value>
+      <value type="bool" key="QtProjectManager.QMakeBuildStep.QMakeForced">true</value>
       <valuelist type="QVariantList" key="QtProjectManager.QMakeBuildStep.SelectedAbis"/>
      </valuemap>
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.1">
@@ -235,14 +235,14 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/elquiasjr/Documents/computer-graphics-project/ProjetoCG.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/home/elquiasjr/Documents/computer-graphics-project/ProjetoCG.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/felipe-izidorio/Documentos/UTFPR/4 período/Computação Gráfica/GitHub-Trabalho/computer-graphics-project/ProjetoCG.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/home/felipe-izidorio/Documentos/UTFPR/4 período/Computação Gráfica/GitHub-Trabalho/computer-graphics-project/ProjetoCG.pro</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/elquiasjr/Documents/build-ProjetoCG-Desktop_Qt_6_3_1_GCC_64bit-Debug</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/felipe-izidorio/Documentos/UTFPR/4 período/Computação Gráfica/GitHub-Trabalho/build-ProjetoCG-Desktop-Debug</value>
    </valuemap>
    <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>

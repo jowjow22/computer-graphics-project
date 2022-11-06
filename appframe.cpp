@@ -17,7 +17,7 @@ int Angle = 0;
 float scaleObject = 0;
 int maxVPX;
 int maxVPY;
-
+ReadObj fileUser;
 
 AppFrame::AppFrame(QWidget *parent): QFrame{parent}
 {
@@ -45,8 +45,7 @@ void AppFrame::paintEvent(QPaintEvent *event){
     maxVPX = this->width();
     maxVPY = this->height();
 
-    ReadObj fileUser;
-    fileUser.fileObjReader((char*)"/home/elquiasjr/Downloads/Pokeball/Pokeball_Obj.obj");
+    fileUser.fileObjReader((char*)"/home/felipe-izidorio/Documentos/UTFPR/4 período/Computação Gráfica/5cfn7ck2t7r4-Pokeball_1/Pokeball/Pokeball_Obj.obj");
 
     QList<QList<QLine>> viewPortObjects;
 
