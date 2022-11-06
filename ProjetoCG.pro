@@ -18,6 +18,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     point.cpp \
+    readobj.cpp \
     rectangle.cpp \
     rotation3d.cpp \
     scale3d.cpp \
@@ -33,6 +34,7 @@ HEADERS += \
     line.h \
     mainwindow.h \
     point.h \
+    readobj.h \
     rectangle.h \
     rotation3d.h \
     scale3d.h \

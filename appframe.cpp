@@ -6,6 +6,7 @@
 #include "rotation3d.h"
 #include "scale3d.h"
 #include <QLine>
+#include "readobj.h"
 #include "elementscombobox.h"
 #include "house.h"
 
@@ -43,6 +44,9 @@ void AppFrame::paintEvent(QPaintEvent *event){
 
     maxVPX = this->width();
     maxVPY = this->height();
+
+    ReadObj fileUser;
+    fileUser.fileObjReader((char*)"/home/elquiasjr/Downloads/Pokeball/Pokeball_Obj.obj");
 
     QList<QList<QLine>> viewPortObjects;
 
