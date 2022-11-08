@@ -1,6 +1,6 @@
 #include "line.h"
 
-Line::Line(int xi, int yi, int xf, int yf)
+Line::Line(float xi, float yi, float xf, float yf)
 {
     this->xi = xi;
     this->yi = yi;

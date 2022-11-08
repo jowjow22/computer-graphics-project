@@ -5,6 +5,7 @@
 #include "translation3d.h"
 #include "rotation3d.h"
 #include "scale3d.h"
+#include "line.h"
 #include <QLine>
 #include "readobj.h"
 #include "elementscombobox.h"
@@ -45,7 +46,7 @@ void AppFrame::paintEvent(QPaintEvent *event){
     maxVPX = this->width();
     maxVPY = this->height();
 
-    fileUser.fileObjReader((char*)"/home/felipe-izidorio/Documentos/UTFPR/4 período/Computação Gráfica/5cfn7ck2t7r4-Pokeball_1/Pokeball/Pokeball_Obj.obj");
+    fileUser.fileObjReader((char*)"/home/felipe-izidorio/Documentos/UTFPR/4 período/Computação Gráfica/Pikachu OBJ.obj");
 
     QList<QList<QLine>> viewPortObjects;
 
@@ -60,6 +61,9 @@ void AppFrame::paintEvent(QPaintEvent *event){
         viewPortObjects.append(frame.listClipping(window.viewPortTransformLine(object)));
     }
 
+    QList<QLine> teste;
+
+    teste.append(frame.listClipping(window.viewPortTransformLine(fileUser.readLines)));
 
     /*viewport definition*/
 
@@ -69,6 +73,10 @@ void AppFrame::paintEvent(QPaintEvent *event){
         for(int i = 0; i < object.length(); i++) {
             painter.drawLine(object.at(i));
         }
+    }
+
+    for(QLine line : teste){
+        painter.drawLine(line);
     }
 
 

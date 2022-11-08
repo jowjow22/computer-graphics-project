@@ -9,8 +9,8 @@ class Line: public QLine, public QPoint, public GenericObject
 {
     QLine line;
 public:
-    int xi, yi, xf, yf;
-    Line(int xi, int yi, int xf, int yf);
+    float xi, yi, xf, yf;
+    Line(float xi, float yi, float xf, float yf);
     Line(Point point1, Point point2);
     virtual void drawObject(QPainter *painter);
     virtual ~Line()

@@ -3,6 +3,8 @@
 
 #include <QList>
 #include "point.h"
+#include "line.h"
+#include <QLine>
 #include<iostream>
 #include<fstream>
 #include <string>
@@ -14,8 +16,11 @@ class ReadObj
 public:
     ReadObj();
     QList<Point> readPoints;
+    QList<QLine> readLines;
     bool FLAG;
     void fileObjReader(char* filePath);
+    string getVertexOfPlane(string value);
+    void clearValues(string values[]);
 };
 
 #endif // READOBJ_H

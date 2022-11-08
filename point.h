@@ -8,7 +8,7 @@ class Point: public GenericObject, public QPoint
 {
     QPoint point;
 public:
-    int x, y, z;
+    float x, y, z;
     Point(float x, float y, float z);
     virtual void drawObject(QPainter *painter);
     virtual ~Point()
