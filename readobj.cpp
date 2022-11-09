@@ -24,7 +24,7 @@ void ReadObj::fileObjReader(char* filePath){
             if(line[0] == 'v' && line[1] == ' ') {
                 iss >> v >> valuesX >> valuesY >> valuesZ;
                 this->readPoints.append(Point(std::stof(valuesX), std::stof(valuesY), std::stof(valuesZ)));
-                cout << valuesX << "\t" << valuesY << "\t" << valuesZ << endl;
+                //cout << valuesX << "\t" << valuesY << "\t" << valuesZ << endl;
             }
             if(line[0] == 'f') {
                 iss >> f >> value1 >> value2 >> value3 >> value4;
@@ -42,7 +42,7 @@ void ReadObj::fileObjReader(char* filePath){
                     this->readLines.append(Line(this->readPoints.at(std::stoi(value3) - 1), this->readPoints.at(std::stoi(value1) - 1)));
                     this->readLines.append(Line(this->readPoints.at(std::stoi(value4) - 1), this->readPoints.at(std::stoi(value1) - 1)));
                 }
-                cout << value1 << "\t" << value2 << "\t" << value3 << "\t" << value4 << endl;
+                //cout << value1 << "\t" << value2 << "\t" << value3 << "\t" << value4 << endl;
                 value1.clear();
                 value2.clear();
                 value3.clear();

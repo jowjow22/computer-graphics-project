@@ -15,6 +15,18 @@ Point::Point(float x, float y) {
     this->point = QPoint(x, y);
 }
 
+QPoint Point::transformPointToQPoint(Point point) {
+    return QPoint(point.x, point.y);
+}
+
+QList<QPoint> Point::transformPointToQPoint(QList<Point> list) {
+    QList<QPoint> newList;
+    for(Point point : list) {
+        newList.append(transformPointToQPoint(point));
+    }
+    return newList;
+}
+
 void Point::drawObject(QPainter *painter){
     painter->drawPoint(this->point);
 }

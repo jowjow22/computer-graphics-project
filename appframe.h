@@ -7,6 +7,7 @@
 #include "window.h"
 #include "genericobject.h"
 #include "point.h"
+#include "line.h"
 
 class AppFrame: public QFrame
 {
@@ -26,7 +27,8 @@ public:
     void downObjectAngle();
     void plusObjectScale();
     void downObjectScale();
-
+    QLine transformLineToQLine(Line line);
+    QList<QLine> transformListOfLinesToListOfQLines(QList<Line> list);
 };
 
 #endif // APPFRAME_H
