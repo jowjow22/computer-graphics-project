@@ -9,6 +9,13 @@ Rotation3D::Rotation3D(float xOld, float yOld, float zOld, float angle) {
     this->angle = angle;
 }
 
+Rotation3D::Rotation3D(Point point, float angle) {
+    this->xOld = point.x;
+    this->yOld = point.y;
+    this->zOld = point.z;
+    this->angle = angle;
+}
+
 void Rotation3D::allocatesP() {
     this->P[0][0] = this->xOld;
     this->P[1][0] = this->yOld;

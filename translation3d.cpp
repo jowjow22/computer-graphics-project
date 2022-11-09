@@ -9,6 +9,15 @@ Translation3D::Translation3D(float xOld, float yOld, float zOld, float dx, float
     this->dz = dz;
 }
 
+Translation3D::Translation3D(Point point, float dx, float dy, float dz) {
+    this->xOld = point.x;
+    this->yOld = point.y;
+    this->zOld = point.z;
+    this->dx = dx;
+    this->dy = dy;
+    this->dz = dz;
+}
+
 void Translation3D::allocatesP() {
     this->P[0][0] = this->xOld;
     this->P[1][0] = this->yOld;

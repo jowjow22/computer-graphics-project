@@ -16,7 +16,7 @@ class ReadObj
 public:
     ReadObj();
     QList<Point> readPoints;
-    QList<QLine> readLines;
+    QList<Line> readLines;
     bool FLAG;
     void fileObjReader(char* filePath);
     string getVertexOfPlane(string value);

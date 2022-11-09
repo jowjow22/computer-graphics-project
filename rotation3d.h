@@ -1,11 +1,12 @@
 #ifndef ROTATION3D_H
 #define ROTATION3D_H
-
+#include "point.h"
 
 class Rotation3D
 {
 public:
     Rotation3D(float xOld, float yOld, float zOld, float angle);
+    Rotation3D(Point point, float angle);
 
     float P[4][1];
     float PNew[4][1];

@@ -1,4 +1,5 @@
 #include "scale3d.h"
+#include <QLine>
 
 Scale3D::Scale3D(float xOld, float yOld, float zOld, float sx, float sy, float sz) {
     this->xOld = xOld;
@@ -7,6 +8,22 @@ Scale3D::Scale3D(float xOld, float yOld, float zOld, float sx, float sy, float s
     this->sx = sx;
     this->sy = sy;
     this->sz = sz;
+}
+
+Scale3D::Scale3D(Point point, float sx, float sy, float sz) {
+    this->xOld = point.x;
+    this->yOld = point.y;
+    this->zOld = point.z;
+    this->sx = sx;
+    this->sy = sy;
+    this->sz = sz;
+}
+
+Scale3D::Scale3D(Point point, float s) {
+    this->xOld = point.x;
+    this->yOld = point.y;
+    this->zOld = point.z;
+    this->sx = this->sy = this->sz = s;
 }
 
 void Scale3D::allocatesP() {

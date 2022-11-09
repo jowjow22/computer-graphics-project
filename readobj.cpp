@@ -33,14 +33,14 @@ void ReadObj::fileObjReader(char* filePath){
                 value3 = getVertexOfPlane(value3);
                 value4 = getVertexOfPlane(value4);
                 if(value4.empty()) {
-                    this->readLines.append(QLine(this->readPoints.at(std::stoi(value1) - 1).x, this->readPoints.at(std::stoi(value1) - 1).y, this->readPoints.at(std::stoi(value2) - 1).x, this->readPoints.at(std::stoi(value2) - 1).y));
-                    this->readLines.append(QLine(this->readPoints.at(std::stoi(value2) - 1).x, this->readPoints.at(std::stoi(value2) - 1).y, this->readPoints.at(std::stoi(value3) - 1).x, this->readPoints.at(std::stoi(value3) - 1).y));
-                    this->readLines.append(QLine(this->readPoints.at(std::stoi(value3) - 1).x, this->readPoints.at(std::stoi(value3) - 1).y, this->readPoints.at(std::stoi(value1) - 1).x, this->readPoints.at(std::stoi(value1) - 1).y));
+                    this->readLines.append(Line(this->readPoints.at(std::stoi(value1) - 1), this->readPoints.at(std::stoi(value2) - 1)));
+                    this->readLines.append(Line(this->readPoints.at(std::stoi(value2) - 1), this->readPoints.at(std::stoi(value3) - 1)));
+                    this->readLines.append(Line(this->readPoints.at(std::stoi(value3) - 1), this->readPoints.at(std::stoi(value1) - 1)));
                 } else {
-                    this->readLines.append(QLine(this->readPoints.at(std::stoi(value1) - 1).x, this->readPoints.at(std::stoi(value1) - 1).y, this->readPoints.at(std::stoi(value2) - 1).x, this->readPoints.at(std::stoi(value2) - 1).y));
-                    this->readLines.append(QLine(this->readPoints.at(std::stoi(value2) - 1).x, this->readPoints.at(std::stoi(value2) - 1).y, this->readPoints.at(std::stoi(value3) - 1).x, this->readPoints.at(std::stoi(value3) - 1).y));
-                    this->readLines.append(QLine(this->readPoints.at(std::stoi(value3) - 1).x, this->readPoints.at(std::stoi(value3) - 1).y, this->readPoints.at(std::stoi(value1) - 1).x, this->readPoints.at(std::stoi(value1) - 1).y));
-                    this->readLines.append(QLine(this->readPoints.at(std::stoi(value4) - 1).x, this->readPoints.at(std::stoi(value4) - 1).y, this->readPoints.at(std::stoi(value1) - 1).x, this->readPoints.at(std::stoi(value1) - 1).y));
+                    this->readLines.append(Line(this->readPoints.at(std::stoi(value1) - 1), this->readPoints.at(std::stoi(value2) - 1)));
+                    this->readLines.append(Line(this->readPoints.at(std::stoi(value2) - 1), this->readPoints.at(std::stoi(value3) - 1)));
+                    this->readLines.append(Line(this->readPoints.at(std::stoi(value3) - 1), this->readPoints.at(std::stoi(value1) - 1)));
+                    this->readLines.append(Line(this->readPoints.at(std::stoi(value4) - 1), this->readPoints.at(std::stoi(value1) - 1)));
                 }
                 cout << value1 << "\t" << value2 << "\t" << value3 << "\t" << value4 << endl;
                 value1.clear();

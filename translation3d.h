@@ -1,11 +1,12 @@
 #ifndef TRANSLATION3D_H
 #define TRANSLATION3D_H
-
+#include "point.h"
 
 class Translation3D
 {
 public:
     Translation3D(float xOld, float yOld, float zOld, float dx, float dy, float dz);
+    Translation3D(Point point, float dx, float dy, float dz);
 
     float P[4][1];
     float T[4][4];
