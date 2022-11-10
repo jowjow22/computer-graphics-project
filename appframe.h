@@ -27,6 +27,8 @@ public:
     void downObjectAngle();
     void plusObjectScale();
     void downObjectScale();
+    void plusObjectPosX();
+    void downObjectPosX();
     QLine transformLineToQLine(Line line);
     QList<QLine> transformListOfLinesToListOfQLines(QList<Line> list);
 };

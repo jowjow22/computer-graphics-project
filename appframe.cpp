@@ -15,10 +15,12 @@ int xGlobal = 0;
 int yGlobal = 0;
 int SCALE = 300;
 int Angle = 0;
+int posX = 0;
 float scaleObject = 0;
 int maxVPX;
 int maxVPY;
 ReadObj fileUser;
+ReadObj fileUser2;
 
 AppFrame::AppFrame(QWidget *parent): QFrame{parent}
 {
@@ -46,7 +48,8 @@ void AppFrame::paintEvent(QPaintEvent *event){
     maxVPX = this->width();
     maxVPY = this->height();
 
-    fileUser.fileObjReader((char*)"/home/felipe-izidorio/Documentos/UTFPR/4 período/Computação Gráfica/Pikachu.obj");
+    fileUser.fileObjReader((char*)"/home/jonathan/Documentos/qt_projects/computer-graphics-project/squirtle.obj");
+    fileUser2.fileObjReader((char*)"/home/jonathan/Documentos/qt_projects/computer-graphics-project/cubone.obj");
 
     QList<QList<QLine>> viewPortObjects;
 
@@ -67,27 +70,56 @@ void AppFrame::paintEvent(QPaintEvent *event){
     QList<QLine> teste4;
 
     for(Line line : fileUser.readLines) {
-        teste1.append(Line(Rotation3D(Point(line.x1, line.y1, line.z1), 40+Angle).getRotationXAroundX(),
-                           Rotation3D(Point(line.x1, line.y1, line.z1), 40+Angle).getRotationYAroundX(),
-                           Rotation3D(Point(line.x2, line.y2, line.z2), 40+Angle).getRotationXAroundX(),
-                           Rotation3D(Point(line.x2, line.y2, line.z2), 40+Angle).getRotationYAroundX()));
+        teste1.append(Line(Rotation3D(Point(line.x1, line.y1, line.z1), 40+Angle).getRotationXAroundY(),
+                           Rotation3D(Point(line.x1, line.y1, line.z1), 40+Angle).getRotationYAroundY(),
+                           Rotation3D(Point(line.x2, line.y2, line.z2), 40+Angle).getRotationXAroundY(),
+                           Rotation3D(Point(line.x2, line.y2, line.z2), 40+Angle).getRotationYAroundY()));
     }
 
     for(Line line : teste1) {
-        teste2.append(Line(Scale3D(Point(line.x1, line.y1, line.z1), 1+scaleObject).getScaleX(),
+        teste2.append(Line(Scale3D(Point(line.x1, line.y1, line.z1), 1).getScaleX(),
+                           Scale3D(Point(line.x1, line.y1, line.z1), 1).getScaleY(),
+                           Scale3D(Point(line.x2, line.y2, line.z2), 1).getScaleX(),
+                           Scale3D(Point(line.x2, line.y2, line.z2), 1).getScaleY()));
+    }
+
+    for(Line line : teste2) {
+        teste3.append(QLine(Translation3D(Point(line.x1, line.y1, line.z1), 0+posX, 0, 0).getTranslationX(),
+                           Translation3D(Point(line.x1, line.y1, line.z1), 0+posX, 0, 0).getTranslationY(),
+                           Translation3D(Point(line.x2, line.y2, line.z2), 0+posX, 0, 0).getTranslationX(),
+                           Translation3D(Point(line.x2, line.y2, line.z2), 0+posX, 0, 0).getTranslationY()));
+    }
+
+    teste4.append(frame.listClipping(window.viewPortTransformLine((teste3))));
+
+    QList<Line> teste5;
+    QList<Line> teste6;
+    QList<QLine> teste7;
+    QList<QLine> teste8;
+
+    for(Line line : fileUser2.readLines) {
+        teste5.append(Line(Rotation3D(Point(line.x1, line.y1, line.z1), 40+Angle).getRotationXAroundY(),
+                           Rotation3D(Point(line.x1, line.y1, line.z1), 40+Angle).getRotationYAroundY(),
+                           Rotation3D(Point(line.x2, line.y2, line.z2), 40+Angle).getRotationXAroundY(),
+                           Rotation3D(Point(line.x2, line.y2, line.z2), 40+Angle).getRotationYAroundY()));
+    }
+
+    for(Line line : teste5) {
+        teste6.append(Line(Scale3D(Point(line.x1, line.y1, line.z1), 1+scaleObject).getScaleX(),
                            Scale3D(Point(line.x1, line.y1, line.z1), 1+scaleObject).getScaleY(),
                            Scale3D(Point(line.x2, line.y2, line.z2), 1+scaleObject).getScaleX(),
                            Scale3D(Point(line.x2, line.y2, line.z2), 1+scaleObject).getScaleY()));
     }
 
-    for(Line line : teste2) {
-        teste3.append(QLine(Translation3D(Point(line.x1, line.y1, line.z1), 0, 0, 0).getTranslationX(),
-                           Translation3D(Point(line.x1, line.y1, line.z1), 0, 0, 0).getTranslationY(),
-                           Translation3D(Point(line.x2, line.y2, line.z2), 0, 0, 0).getTranslationX(),
-                           Translation3D(Point(line.x2, line.y2, line.z2), 0, 0, 0).getTranslationY()));
+    for(Line line : teste6) {
+        teste7.append(QLine(Translation3D(Point(line.x1, line.y1, line.z1), 0-posX, 0, 0).getTranslationX(),
+                           Translation3D(Point(line.x1, line.y1, line.z1), 0-posX, 0, 0).getTranslationY(),
+                           Translation3D(Point(line.x2, line.y2, line.z2), 0-posX, 0, 0).getTranslationX(),
+                           Translation3D(Point(line.x2, line.y2, line.z2), 0-posX, 0, 0).getTranslationY()));
     }
 
-    teste4.append(frame.listClipping(window.viewPortTransformLine(teste3)));
+    teste8.append(frame.listClipping(window.viewPortTransformLine((teste7))));
+
 
     /*viewport definition*/
 
@@ -104,6 +136,9 @@ void AppFrame::paintEvent(QPaintEvent *event){
 //    }
 
     for(QLine line : teste4){
+        painter.drawLine(line);
+    }
+    for(QLine line : teste8){
         painter.drawLine(line);
     }
 
@@ -154,6 +189,13 @@ void AppFrame::plusObjectScale() {
 
 void AppFrame::downObjectScale() {
     scaleObject -= 2;
+}
+void AppFrame::plusObjectPosX() {
+    posX += 2;
+}
+
+void AppFrame::downObjectPosX() {
+    posX -= 2;
 }
 
 QLine AppFrame::transformLineToQLine(Line line) {

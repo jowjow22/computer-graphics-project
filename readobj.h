@@ -18,7 +18,7 @@ public:
     QList<Point> readPoints;
     QList<Line> readLines;
     bool FLAG;
-    void fileObjReader(char* filePath);
+    void fileObjReader(QString filePath);
     string getVertexOfPlane(string value);
     void clearValues(string values[]);
 };

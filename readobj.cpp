@@ -4,55 +4,60 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-using namespace std;
+#include <QFile>
+#include <regex>
+#include <QString>
+#include <QTextStream>
+#include <math.h>
 
 ReadObj::ReadObj()
 {
     this->FLAG = false;
 }
 //QList<QPoint>
-void ReadObj::fileObjReader(char* filePath){
-    if(this->FLAG == false) {
-        string line;
-        string v, valuesX, valuesY, valuesZ;
-        string f, value1, value2, value3, value4;
+void ReadObj::fileObjReader(QString filePath){
+    if(!this->FLAG){
+    QString line;
+    QFile objFile(filePath);
+    regex vertexReg("[v]( ([-]?[0-9]*.[0-9]*))+");
+    regex facesReg("[f]( [0-9]*/[0-9]*/[0-9]*)+");
+    if(!objFile.open(QIODevice::ReadOnly | QIODevice::Text)){
+        return;
+    }
+    QTextStream in(&objFile);
 
-        ifstream myfile(filePath);
-        while(!myfile.eof()) {
-            getline (myfile,line);
-            std::istringstream iss( line );
-            if(line[0] == 'v' && line[1] == ' ') {
-                iss >> v >> valuesX >> valuesY >> valuesZ;
-                this->readPoints.append(Point(std::stof(valuesX), std::stof(valuesY), std::stof(valuesZ)));
-                //cout << valuesX << "\t" << valuesY << "\t" << valuesZ << endl;
-            }
-            if(line[0] == 'f') {
-                iss >> f >> value1 >> value2 >> value3 >> value4;
-                value1 = getVertexOfPlane(value1);
-                value2 = getVertexOfPlane(value2);
-                value3 = getVertexOfPlane(value3);
-                value4 = getVertexOfPlane(value4);
-                if(value4.empty()) {
-                    this->readLines.append(Line(this->readPoints.at(std::stoi(value1) - 1), this->readPoints.at(std::stoi(value2) - 1)));
-                    this->readLines.append(Line(this->readPoints.at(std::stoi(value2) - 1), this->readPoints.at(std::stoi(value3) - 1)));
-                    this->readLines.append(Line(this->readPoints.at(std::stoi(value3) - 1), this->readPoints.at(std::stoi(value1) - 1)));
-                } else {
-                    this->readLines.append(Line(this->readPoints.at(std::stoi(value1) - 1), this->readPoints.at(std::stoi(value2) - 1)));
-                    this->readLines.append(Line(this->readPoints.at(std::stoi(value2) - 1), this->readPoints.at(std::stoi(value3) - 1)));
-                    this->readLines.append(Line(this->readPoints.at(std::stoi(value3) - 1), this->readPoints.at(std::stoi(value1) - 1)));
-                    this->readLines.append(Line(this->readPoints.at(std::stoi(value4) - 1), this->readPoints.at(std::stoi(value1) - 1)));
+    do{
+        line = in.readLine().trimmed();
+        if(regex_match(line.toStdString(), vertexReg)){
+            auto vertex = line.split(u' ');
+            this->readPoints.append(Point(vertex[1].toDouble(), vertex[2].toDouble(), vertex[3].toDouble()));
+        }
+    } while(!line.isNull());
+    objFile.close();
+
+    if(!objFile.open(QIODevice::ReadOnly | QIODevice::Text)){
+        return;
+    }
+    QTextStream in2(&objFile);
+    QString line2;
+    do{
+        line2 = in2.readLine().trimmed();
+        if(regex_match(line2.toStdString(), facesReg)){
+            auto faces = line2.split(u' ');
+            for(int i = 1; i <= faces.length()-2; i++){
+                int currentPoint = faces[i].split(u'/')[0].toInt() - 1;
+                int nextPoint = faces[i+1].split(u'/')[0].toInt() - 1;
+                int firstPoint = faces[1].split(u'/')[0].toInt() - 1;
+                this->readLines.append(Line(this->readPoints.at(currentPoint), this->readPoints.at(nextPoint)));
+                if(i == faces.length()-2){
+                    this->readLines.append(Line(this->readPoints.at(nextPoint), this->readPoints.at(firstPoint)));
                 }
-                //cout << value1 << "\t" << value2 << "\t" << value3 << "\t" << value4 << endl;
-                value1.clear();
-                value2.clear();
-                value3.clear();
-                value4.clear();
+
             }
         }
-        std::cout << this->readPoints.length() << std::endl;
-        std::cout << this->readLines.length() << std::endl;
-        myfile.close();
-        this->FLAG = true;
+    }while(!line2.isNull());
+    objFile.close();
+    this->FLAG = true;
     }
 }
 
