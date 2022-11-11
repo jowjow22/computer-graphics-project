@@ -533,6 +533,23 @@ color: rgb(0, 0, 0);</string>
      <string>Translade Z:</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton_23">
+    <property name="geometry">
+     <rect>
+      <x>1040</x>
+      <y>320</y>
+      <width>71</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(98, 160, 234);
+color: rgb(0, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>Reset</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -573,6 +590,7 @@ color: rgb(0, 0, 0);</string>
     <slot>downObjectPosX()</slot>
     <slot>downObjectPosY()</slot>
     <slot>downObjectPosZ()</slot>
+    <slot>resetObject()</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -900,6 +918,22 @@ color: rgb(0, 0, 0);</string>
     <hint type="destinationlabel">
      <x>519</x>
      <y>501</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_23</sender>
+   <signal>clicked()</signal>
+   <receiver>frame</receiver>
+   <slot>resetObject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1082</x>
+     <y>358</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>574</x>
+     <y>655</y>
     </hint>
    </hints>
   </connection>

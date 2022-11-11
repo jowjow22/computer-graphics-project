@@ -63,7 +63,7 @@ void AppFrame::paintEvent(QPaintEvent *event){
         viewPortObjects.append(frame.listClipping(window.viewPortTransformLine(object)));
     }
 
-    for(QLine line : frame.listClipping(window.viewPortTransformLine(Transformations3d::getTransformations3d(fileUser2, angleX, scaleObject, posX)))){
+    for(QLine line : frame.listClipping(window.viewPortTransformLine(Transformations3d::getTransformations3d(fileUser2, scaleObject, angleX, angleY, angleZ, posX, posY, posZ)))){
         painter.drawLine(line);
     }
 
@@ -150,6 +150,16 @@ void AppFrame::plusObjectPosZ() {
 
 void AppFrame::downObjectPosZ() {
     posZ -= 2;
+}
+
+void AppFrame::resetObject() {
+    scaleObject = 0;
+    angleX = 0;
+    angleY = 0;
+    angleZ = 0;
+    posX = 0;
+    posY = 0;
+    posZ = 0;
 }
 
 QLine AppFrame::transformLineToQLine(Line line) {

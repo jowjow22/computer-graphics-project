@@ -37,6 +37,7 @@ public:
     void downObjectPosY();
     void plusObjectPosZ();
     void downObjectPosZ();
+    void resetObject();
     QLine transformLineToQLine(Line line);
     QList<QLine> transformListOfLinesToListOfQLines(QList<Line> list);
 public Q_SLOTS:
