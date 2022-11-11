@@ -11,8 +11,12 @@
 int xGlobal = 0;
 int yGlobal = 0;
 int SCALE = 300;
-int Angle = 0;
+int angleX = 0;
+int angleY = 0;
+int angleZ = 0;
 int posX = 0;
+int posY = 0;
+int posZ = 0;
 float scaleObject = 0;
 int maxVPX;
 int maxVPY;
@@ -59,7 +63,7 @@ void AppFrame::paintEvent(QPaintEvent *event){
         viewPortObjects.append(frame.listClipping(window.viewPortTransformLine(object)));
     }
 
-    for(QLine line : frame.listClipping(window.viewPortTransformLine(Transformations3d::getTransformations3d(fileUser2, Angle, scaleObject, posX)))){
+    for(QLine line : frame.listClipping(window.viewPortTransformLine(Transformations3d::getTransformations3d(fileUser2, angleX, scaleObject, posX)))){
         painter.drawLine(line);
     }
 
@@ -92,31 +96,60 @@ void AppFrame::downWindowsScale(){
     SCALE = SCALE > 0? SCALE - 25: 0;
 }
 
-void AppFrame::plusObjectAngle() {
-    Angle += 15;
-}
-
-void AppFrame::downObjectAngle() {
-    Angle -= 15;
-}
-
 void AppFrame::plusObjectScale() {
     scaleObject += 2;
-}
-
-void AppFrame::getSelectedObject(int){
-    std::cout << "asdasd" << std::endl;
 }
 
 void AppFrame::downObjectScale() {
     scaleObject -= 2;
 }
+
+void AppFrame::plusObjectAngleAroundX() {
+    angleX += 15;
+}
+
+void AppFrame::downObjectAngleAroundX() {
+    angleX -= 15;
+}
+
+void AppFrame::plusObjectAngleAroundY() {
+    angleY += 15;
+}
+
+void AppFrame::downObjectAngleAroundY() {
+    angleY -= 15;
+}
+
+void AppFrame::plusObjectAngleAroundZ() {
+    angleZ += 15;
+}
+
+void AppFrame::downObjectAngleAroundZ() {
+    angleZ -= 15;
+}
+
 void AppFrame::plusObjectPosX() {
     posX += 2;
 }
 
 void AppFrame::downObjectPosX() {
     posX -= 2;
+}
+
+void AppFrame::plusObjectPosY() {
+    posY += 2;
+}
+
+void AppFrame::downObjectPosY() {
+    posY -= 2;
+}
+
+void AppFrame::plusObjectPosZ() {
+    posZ += 2;
+}
+
+void AppFrame::downObjectPosZ() {
+    posZ -= 2;
 }
 
 QLine AppFrame::transformLineToQLine(Line line) {

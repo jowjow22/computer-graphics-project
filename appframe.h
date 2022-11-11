@@ -23,12 +23,20 @@ public:
     void minusWindowsY();
     void plusWindowsScale();
     void downWindowsScale();
-    void plusObjectAngle();
-    void downObjectAngle();
     void plusObjectScale();
     void downObjectScale();
+    void plusObjectAngleAroundX();
+    void downObjectAngleAroundX();
+    void plusObjectAngleAroundY();
+    void downObjectAngleAroundY();
+    void plusObjectAngleAroundZ();
+    void downObjectAngleAroundZ();
     void plusObjectPosX();
     void downObjectPosX();
+    void plusObjectPosY();
+    void downObjectPosY();
+    void plusObjectPosZ();
+    void downObjectPosZ();
     QLine transformLineToQLine(Line line);
     QList<QLine> transformListOfLinesToListOfQLines(QList<Line> list);
 public Q_SLOTS:
