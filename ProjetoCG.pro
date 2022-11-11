@@ -22,6 +22,7 @@ SOURCES += \
     rectangle.cpp \
     rotation3d.cpp \
     scale3d.cpp \
+    transformations3d.cpp \
     translation3d.cpp \
     window.cpp
 
@@ -38,6 +39,7 @@ HEADERS += \
     rectangle.h \
     rotation3d.h \
     scale3d.h \
+    transformations3d.h \
     translation3d.h \
     window.h
 

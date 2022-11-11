@@ -31,6 +31,9 @@ public:
     void downObjectPosX();
     QLine transformLineToQLine(Line line);
     QList<QLine> transformListOfLinesToListOfQLines(QList<Line> list);
+public Q_SLOTS:
+    void getSelectedObject(int);
+
 };
 
 #endif // APPFRAME_H

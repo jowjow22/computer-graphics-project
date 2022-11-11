@@ -14,11 +14,10 @@ ReadObj::ReadObj()
 {
     this->FLAG = false;
 }
-//QList<QPoint>
-void ReadObj::fileObjReader(QString filePath){
+void ReadObj::fileObjReader(QString fileName){
     if(!this->FLAG){
     QString line;
-    QFile objFile(filePath);
+    QFile objFile("../computer-graphics-project/"+fileName+".obj");
     regex vertexReg("[v]( ([-]?[0-9]*.[0-9]*))+");
     regex facesReg("[f]( [0-9]*/[0-9]*/[0-9]*)+");
     if(!objFile.open(QIODevice::ReadOnly | QIODevice::Text)){
