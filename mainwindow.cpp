@@ -8,7 +8,6 @@
 #include "line.h"
 #include <QLine>
 #include "readobj.h"
-#include "elementscombobox.h"
 
 int xGlobal = 0;
 int yGlobal = 0;
@@ -32,8 +31,6 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    ElementsComboBox comboBox(parent);
-
     squirtleObj.fileObjReader();
     cuboneObj.fileObjReader();
 
@@ -44,7 +41,7 @@ MainWindow::MainWindow(QWidget *parent)
         objects[i].id = i;
     }
 
-    for(ReadObj obj : objects){
+    for(ReadObj& obj : objects){
         ui->comboBox->addItem(obj.fileName);
     }
 
@@ -87,77 +84,17 @@ void MainWindow::paintEvent(QPaintEvent *event){
     frame.drawFrame(&painter);
 }
 
-void MainWindow::plusWindowsX(){
-    xGlobal += 10;
-}
-
-void MainWindow::minusWindowsX(){
-    xGlobal -= 10;
-}
-
-void MainWindow::plusWindowsY(){
-    yGlobal += 10;
-}
-
-void MainWindow::minusWindowsY(){
-    yGlobal -= 10;
-}
-
-void MainWindow::plusObjectAngle() {
-    Angle += 15;
-}
-
-void MainWindow::downObjectAngle() {
-    Angle -= 15;
-}
-
-void MainWindow::plusObjectScale() {
-    scaleObject += 2;
-}
-void MainWindow::downObjectScale() {
-    scaleObject -= 2;
-}
-void MainWindow::plusObjectPosX() {
-    posX += 2;
-}
-
-void MainWindow::downObjectPosX() {
-    posX -= 2;
-}
-
 QLine MainWindow::transformLineToQLine(Line line) {
     return QLine(line.x1, line.y1, line.x2, line.y2);
 }
 
 QList<QLine> MainWindow::transformListOfLinesToListOfQLines(QList<Line> list) {
     QList<QLine> newList;
-    for(Line line : list) {
+    for(Line& line : list) {
         newList.append(transformLineToQLine(line));
     }
     return newList;
 }
-
-
-void MainWindow::on_pushButton_7_clicked()
-{
-      Angle += 15;
-      update();
-}
-
-
-void MainWindow::on_pushButton_5_pressed()
-{
-    SCALE = SCALE > 0? SCALE - 25: 0;
-          update();
-}
-
-
-void MainWindow::on_pushButton_6_clicked()
-{
-   SCALE +=25;
-         update();
-}
-
 
 void MainWindow::on_comboBox_currentIndexChanged(int index)
 {
@@ -203,6 +140,13 @@ void MainWindow::on_dial_sliderMoved(int position)
 void MainWindow::on_spinBox_valueChanged(int arg1)
 {
     posX = arg1;
+    update();
+}
+
+
+void MainWindow::on_spinBox_2_valueChanged(int arg1)
+{
+    SCALE = arg1;
     update();
 }
 

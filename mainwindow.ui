@@ -46,23 +46,6 @@ color: rgb(0, 0, 0);</string>
       <string>Down Scale</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_2">
-     <property name="geometry">
-      <rect>
-       <x>40</x>
-       <y>120</y>
-       <width>89</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(98, 160, 234);
-color: rgb(0, 0, 0);</string>
-     </property>
-     <property name="text">
-      <string>+ y</string>
-     </property>
-    </widget>
     <widget class="QLabel" name="label_4">
      <property name="geometry">
       <rect>
@@ -79,58 +62,11 @@ color: rgb(0, 0, 0);</string>
       <string>Object Settings:</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_3">
-     <property name="geometry">
-      <rect>
-       <x>150</x>
-       <y>80</y>
-       <width>89</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(98, 160, 234);
-color: rgb(0, 0, 0);</string>
-     </property>
-     <property name="text">
-      <string>- x</string>
-     </property>
-    </widget>
-    <widget class="ElementsComboBox" name="comboBox">
-     <property name="geometry">
-      <rect>
-       <x>310</x>
-       <y>80</y>
-       <width>231</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: #000; padding: 0 20px;</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton">
-     <property name="geometry">
-      <rect>
-       <x>40</x>
-       <y>80</y>
-       <width>89</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(98, 160, 234);
-color: rgb(0, 0, 0);</string>
-     </property>
-     <property name="text">
-      <string>+ x</string>
-     </property>
-    </widget>
     <widget class="QSlider" name="horizontalSlider">
      <property name="geometry">
       <rect>
-       <x>360</x>
-       <y>440</y>
+       <x>40</x>
+       <y>480</y>
        <width>160</width>
        <height>16</height>
       </rect>
@@ -195,28 +131,11 @@ color: rgb(0, 0, 0);</string>
       <string>-</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_4">
-     <property name="geometry">
-      <rect>
-       <x>150</x>
-       <y>120</y>
-       <width>89</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(98, 160, 234);
-color: rgb(0, 0, 0);</string>
-     </property>
-     <property name="text">
-      <string>-y</string>
-     </property>
-    </widget>
     <widget class="QSlider" name="verticalSlider">
      <property name="geometry">
       <rect>
-       <x>530</x>
-       <y>280</y>
+       <x>210</x>
+       <y>330</y>
        <width>16</width>
        <height>160</height>
       </rect>
@@ -312,6 +231,71 @@ color: rgb(0, 0, 0);</string>
       <string>X pos:</string>
      </property>
     </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>450</y>
+       <width>67</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>x</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_6">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>330</y>
+       <width>21</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>y</string>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="spinBox_2">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>410</y>
+       <width>91</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="maximum">
+      <number>300</number>
+     </property>
+     <property name="singleStep">
+      <number>15</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_7">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>380</y>
+       <width>101</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Window Scale</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox">
+     <property name="geometry">
+      <rect>
+       <x>350</x>
+       <y>40</y>
+       <width>201</width>
+       <height>25</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -326,13 +310,6 @@ color: rgb(0, 0, 0);</string>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>ElementsComboBox</class>
-   <extends>QComboBox</extends>
-   <header>elementscombobox.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

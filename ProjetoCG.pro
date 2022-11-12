@@ -10,7 +10,6 @@ CONFIG += c++17
 
 SOURCES += \
     clipping.cpp \
-    elementscombobox.cpp \
     genericobject.cpp \
     house.cpp \
     line.cpp \
@@ -18,7 +17,6 @@ SOURCES += \
     mainwindow.cpp \
     point.cpp \
     readobj.cpp \
-    rectangle.cpp \
     rotation3d.cpp \
     scale3d.cpp \
     transformations3d.cpp \
@@ -27,14 +25,12 @@ SOURCES += \
 
 HEADERS += \
     clipping.h \
-    elementscombobox.h \
     genericobject.h \
     house.h \
     line.h \
     mainwindow.h \
     point.h \
     readobj.h \
-    rectangle.h \
     rotation3d.h \
     scale3d.h \
     transformations3d.h \
