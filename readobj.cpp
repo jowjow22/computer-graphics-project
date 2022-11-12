@@ -8,16 +8,21 @@
 #include <regex>
 #include <QString>
 #include <QTextStream>
+#include "mainwindow.h"
 #include <math.h>
+#include "transformations3d.h"
 
-ReadObj::ReadObj()
+ReadObj::ReadObj(QString fileName, QColor objColor, int x)
 {
     this->FLAG = false;
+    this->fileName = fileName;
+    this->objectColor = objColor;
+    this->x = x;
 }
-void ReadObj::fileObjReader(QString fileName){
+void ReadObj::fileObjReader(){
     if(!this->FLAG){
     QString line;
-    QFile objFile("../computer-graphics-project/"+fileName+".obj");
+    QFile objFile("../computer-graphics-project/"+this->fileName+".obj");
     regex vertexReg("[v]( ([-]?[0-9]*.[0-9]*))+");
     regex facesReg("[f]( [0-9]*/[0-9]*/[0-9]*)+");
     if(!objFile.open(QIODevice::ReadOnly | QIODevice::Text)){
@@ -69,7 +74,18 @@ string ReadObj::getVertexOfPlane(string value) {
     return value;
 }
 
-//Implementar essa função em fileObjReader
+
+QList<QLine> ReadObj::transformObjectData(Window *window, Clipping *frame, int angle, int scale, int posX){
+    this->x += posX;
+    this->size += scale;
+    this->angle = angle;
+    return frame->listClipping(window->viewPortTransformLine(Transformations3d::getTransformations3d(*this, this->angle, this->size, this->x)));
+}
+
+QList<QLine> ReadObj::draw(Window *window, Clipping *frame){
+    return frame->listClipping(window->viewPortTransformLine(Transformations3d::getTransformations3d(*this, this->angle, this->size, this->x)));
+}
+
 void ReadObj::clearValues(string values[]) {
     for(unsigned long i = 0; i < values->length(); i++) {
         values[i].clear();
