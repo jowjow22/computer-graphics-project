@@ -75,15 +75,19 @@ string ReadObj::getVertexOfPlane(string value) {
 }
 
 
-QList<QLine> ReadObj::transformObjectData(Window *window, Clipping *frame, int angle, int scale, int posX){
+QList<QLine> ReadObj::transformObjectData(Window *window, Clipping *frame, int scaleObject, int angleX, int angleY, int angleZ, int posX, int posY, int posZ){
     this->x += posX;
-    this->size += scale;
-    this->angle = angle;
-    return frame->listClipping(window->viewPortTransformLine(Transformations3d::getTransformations3d(*this, this->angle, this->size, this->x)));
+    this->y += posY;
+    this->z += posZ;
+    this->size += scaleObject;
+    this->angleX = angleX;
+    this->angleY = angleY;
+    this->angleZ = angleZ;
+    return frame->listClipping(window->viewPortTransformLine(Transformations3d::getTransformations3d(*this, this->size, this->angleX, this->angleY, this->angleZ, this->x, this->y, this->z)));
 }
 
 QList<QLine> ReadObj::draw(Window *window, Clipping *frame){
-    return frame->listClipping(window->viewPortTransformLine(Transformations3d::getTransformations3d(*this, this->angle, this->size, this->x)));
+    return frame->listClipping(window->viewPortTransformLine(Transformations3d::getTransformations3d(*this, this->size, this->angleX, this->angleY, this->angleZ, this->x, this->y, this->z)));
 }
 
 void ReadObj::clearValues(string values[]) {

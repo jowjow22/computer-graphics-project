@@ -12,8 +12,12 @@
 int xGlobal = 0;
 int yGlobal = 0;
 int SCALE = 300;
-int Angle = 0;
+int AngleX = 0;
+int AngleY = 0;
+int AngleZ = 0;
 int posX = 0;
+int posY = 0;
+int posZ = 0;
 float scaleObject = 10;
 int maxVPX;
 int idx;
@@ -37,10 +41,6 @@ MainWindow::MainWindow(QWidget *parent)
     objects.append(squirtleObj);
     objects.append(cuboneObj);
 
-    for(int i = 0; i < objects.length(); i++){
-        objects[i].id = i;
-    }
-
     for(ReadObj& obj : objects){
         ui->comboBox->addItem(obj.fileName);
     }
@@ -60,8 +60,8 @@ void MainWindow::paintEvent(QPaintEvent *event){
     pen.setWidth(1);
     painter.setPen(pen);
 
-    maxVPX = 600;
-    maxVPY = 600;
+    maxVPX = 1000;
+    maxVPY = 1000;
 
     Window window(maxVPX, maxVPY, xGlobal, xGlobal+SCALE, yGlobal, yGlobal+SCALE);
 
@@ -71,7 +71,11 @@ void MainWindow::paintEvent(QPaintEvent *event){
     Clipping frame(window.viewPortTransformPoint(framePoints));
 
         objects[idx].x = posX;
-        objects[idx].angle = Angle;
+        objects[idx].y = posY;
+        objects[idx].z = posZ;
+        objects[idx].angleX = AngleX;
+        objects[idx].angleY = AngleY;
+        objects[idx].angleZ = AngleZ;
         objects[idx].size = scaleObject;
 
         for(ReadObj object : objects){
@@ -101,10 +105,16 @@ void MainWindow::on_comboBox_currentIndexChanged(int index)
     currentObject = index;
     scaleObject = objects[index].size;
     posX = objects[index].x;
-    Angle = objects[index].angle;
+    posY = objects[index].y;
+    posZ = objects[index].z;
+    AngleX = objects[index].angleX;
+    AngleY = objects[index].angleY;
+    AngleZ = objects[index].angleZ;
     idx = index;
     ui->spinBox->setValue(posX);
-    std::cout << index << std::endl;
+    ui->spinBox_3->setValue(posY);
+    ui->spinBox_4->setValue(posZ);
+    ui->spinBox_5->setValue(scaleObject);
     update();
 }
 
@@ -122,17 +132,9 @@ void MainWindow::on_horizontalSlider_sliderMoved(int position)
     update();
 }
 
-
-void MainWindow::on_pushButton_8_pressed()
-{
-    scaleObject += 2;
-    update();
-}
-
-
 void MainWindow::on_dial_sliderMoved(int position)
 {
-   Angle = position;
+   AngleX = position;
    update();
 }
 
@@ -147,6 +149,41 @@ void MainWindow::on_spinBox_valueChanged(int arg1)
 void MainWindow::on_spinBox_2_valueChanged(int arg1)
 {
     SCALE = arg1;
+    update();
+}
+
+
+void MainWindow::on_dial_2_sliderMoved(int position)
+{
+    AngleY = position;
+    update();
+}
+
+
+void MainWindow::on_dial_3_sliderMoved(int position)
+{
+    AngleZ = position;
+    update();
+}
+
+
+void MainWindow::on_spinBox_3_valueChanged(int arg1)
+{
+    posY = arg1;
+    update();
+}
+
+
+void MainWindow::on_spinBox_4_valueChanged(int arg1)
+{
+    posZ = arg1;
+    update();
+}
+
+
+void MainWindow::on_spinBox_5_valueChanged(int arg1)
+{
+    scaleObject = arg1;
     update();
 }
 
