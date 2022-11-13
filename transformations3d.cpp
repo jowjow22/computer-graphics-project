@@ -14,7 +14,7 @@ QList<QLine> Transformations3d::getTransformations3d(ReadObj lines, float scaleO
                         Rotation3D(Point(line.x1, line.y1, line.z1), angleX).getRotationZAroundX(),
                         Rotation3D(Point(line.x2, line.y2, line.z2), angleX).getRotationXAroundX(),
                         Rotation3D(Point(line.x2, line.y2, line.z2), angleX).getRotationYAroundX(),
-                        Rotation3D(Point(line.x1, line.y1, line.z1), angleX).getRotationZAroundX()));
+                        Rotation3D(Point(line.x2, line.y2, line.z2), angleX).getRotationZAroundX()));
     }
 
     for(const Line &line : aux) {
@@ -23,7 +23,7 @@ QList<QLine> Transformations3d::getTransformations3d(ReadObj lines, float scaleO
                          Rotation3D(Point(line.x1, line.y1, line.z1), angleY).getRotationZAroundY(),
                          Rotation3D(Point(line.x2, line.y2, line.z2), angleY).getRotationXAroundY(),
                          Rotation3D(Point(line.x2, line.y2, line.z2), angleY).getRotationYAroundY(),
-                         Rotation3D(Point(line.x1, line.y1, line.z1), angleY).getRotationZAroundY()));
+                         Rotation3D(Point(line.x2, line.y2, line.z2), angleY).getRotationZAroundY()));
     }
 
     for(const Line &line : aux2) {
@@ -32,7 +32,7 @@ QList<QLine> Transformations3d::getTransformations3d(ReadObj lines, float scaleO
                          Rotation3D(Point(line.x1, line.y1, line.z1), angleZ).getRotationZAroundZ(),
                          Rotation3D(Point(line.x2, line.y2, line.z2), angleZ).getRotationXAroundZ(),
                          Rotation3D(Point(line.x2, line.y2, line.z2), angleZ).getRotationYAroundZ(),
-                         Rotation3D(Point(line.x1, line.y1, line.z1), angleZ).getRotationZAroundZ()));
+                         Rotation3D(Point(line.x2, line.y2, line.z2), angleZ).getRotationZAroundZ()));
     }
 
     for(const Line &line : aux3) {
@@ -41,7 +41,7 @@ QList<QLine> Transformations3d::getTransformations3d(ReadObj lines, float scaleO
                          Scale3D(Point(line.x1, line.y1, line.z1), 1+scaleObject).getScaleZ(),
                          Scale3D(Point(line.x2, line.y2, line.z2), 1+scaleObject).getScaleX(),
                          Scale3D(Point(line.x2, line.y2, line.z2), 1+scaleObject).getScaleY(),
-                         Scale3D(Point(line.x1, line.y1, line.z1), 1+scaleObject).getScaleZ()));
+                         Scale3D(Point(line.x2, line.y2, line.z2), 1+scaleObject).getScaleZ()));
     }
 
     for(const Line &line : aux4) {
@@ -50,7 +50,7 @@ QList<QLine> Transformations3d::getTransformations3d(ReadObj lines, float scaleO
                           Translation3D(Point(line.x1, line.y1, line.z1), 0-posX, 0+posY, 0-posZ).getTranslationZ(),
                           Translation3D(Point(line.x2, line.y2, line.z2), 0-posX, 0+posY, 0-posZ).getTranslationX(),
                           Translation3D(Point(line.x2, line.y2, line.z2), 0-posX, 0+posY, 0-posZ).getTranslationY(),
-                          Translation3D(Point(line.x1, line.y1, line.z1), 0-posX, 0+posY, 0-posZ).getTranslationZ()));
+                          Translation3D(Point(line.x2, line.y2, line.z2), 0-posX, 0+posY, 0-posZ).getTranslationZ()));
     }
 
     for(const Line &line: aux5) {
