@@ -19,13 +19,13 @@ public:
     QString fileName;
     QColor objectColor;
 
-    double x, y, z, angleX = 0, angleY=0, angleZ=0, size = 5;
+    float x, y, z, angleX = 0, angleY = 0, angleZ = 0, size = 5;
 
     ReadObj(QString fileName, QColor objColor, int x);
     QList<Point> readPoints;
     QList<Line> readLines;
     QList<QLine> draw(Window *window, Clipping *frame);
-    QList<QLine> transformObjectData(Window *window, Clipping *frame, int scaleObject, int angleX, int angleY, int angleZ, int posX, int posY, int posZ);
+    QList<QLine> transformObjectData(Window *window, Clipping *frame, float scaleObject, float angleX, float angleY, float angleZ, float posX, float posY, float posZ);
     void fileObjReader();
     string getVertexOfPlane(string value);
     void clearValues(string values[]);

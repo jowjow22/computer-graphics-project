@@ -12,7 +12,7 @@ class Transformations3d
 {
 public:
     Transformations3d();
-    static QList<QLine> getTransformations3d(ReadObj lines, int scaleObject, int angleX, int angleY, int angleZ, int posX, int posY, int posZ);
+    static QList<QLine> getTransformations3d(ReadObj lines, float scaleObject, float angleX, float angleY, float angleZ, float posX, float posY, float posZ);
 };
 
 #endif // TRANSFORMATIONS3D_H

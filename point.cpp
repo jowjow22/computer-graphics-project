@@ -21,7 +21,7 @@ QPoint Point::transformPointToQPoint(Point point) {
 
 QList<QPoint> Point::transformPointToQPoint(QList<Point> list) {
     QList<QPoint> newList;
-    for(Point point : list) {
+    for(const Point &point : list) {
         newList.append(transformPointToQPoint(point));
     }
     return newList;

@@ -5,7 +5,7 @@ Transformations3d::Transformations3d()
 
 }
 
-QList<QLine> Transformations3d::getTransformations3d(ReadObj lines, int scaleObject, int angleX, int angleY, int angleZ, int posX, int posY, int posZ){
+QList<QLine> Transformations3d::getTransformations3d(ReadObj lines, float scaleObject, float angleX, float angleY, float angleZ, float posX, float posY, float posZ){
     QList<Line> aux, aux2, aux3, aux4, aux5;
     QList<QLine> QAux;
     for(const Line &line : lines.readLines) {

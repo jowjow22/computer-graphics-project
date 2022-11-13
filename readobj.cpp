@@ -75,7 +75,7 @@ string ReadObj::getVertexOfPlane(string value) {
 }
 
 
-QList<QLine> ReadObj::transformObjectData(Window *window, Clipping *frame, int scaleObject, int angleX, int angleY, int angleZ, int posX, int posY, int posZ){
+QList<QLine> ReadObj::transformObjectData(Window *window, Clipping *frame, float scaleObject, float angleX, float angleY, float angleZ, float posX, float posY, float posZ){
     this->x += posX;
     this->y += posY;
     this->z += posZ;
