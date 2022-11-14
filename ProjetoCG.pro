@@ -9,34 +9,32 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    appframe.cpp \
     clipping.cpp \
     genericobject.cpp \
-    geometrictransformation.cpp \
     house.cpp \
     line.cpp \
     main.cpp \
     mainwindow.cpp \
     point.cpp \
-    rectangle.cpp \
-    rotation.cpp \
-    scale.cpp \
-    translation.cpp \
+    readobj.cpp \
+    rotation3d.cpp \
+    scale3d.cpp \
+    transformations3d.cpp \
+    translation3d.cpp \
     window.cpp
 
 HEADERS += \
-    appframe.h \
     clipping.h \
     genericobject.h \
-    geometrictransformation.h \
     house.h \
     line.h \
     mainwindow.h \
     point.h \
-    rectangle.h \
-    rotation.h \
-    scale.h \
-    translation.h \
+    readobj.h \
+    rotation3d.h \
+    scale3d.h \
+    transformations3d.h \
+    translation3d.h \
     window.h
 
 FORMS += \

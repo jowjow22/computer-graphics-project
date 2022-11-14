@@ -7,11 +7,13 @@
 #include "window.h"
 #include "genericobject.h"
 #include "point.h"
+#include "line.h"
 
 class AppFrame: public QFrame
 {
 public:
     AppFrame(QWidget *parent = nullptr);
+    QList<QList<QLine>> worldObjectList;
     virtual void paintEvent(QPaintEvent *event);
     void coordsWindowToViewport(QList<GenericObject *> *displayFile, Window window, Point *p);
     void addPointToDisplayFile(QList<GenericObject *> *displayFile, Point *p);
@@ -25,6 +27,12 @@ public:
     void downObjectAngle();
     void plusObjectScale();
     void downObjectScale();
+    void plusObjectPosX();
+    void downObjectPosX();
+    QLine transformLineToQLine(Line line);
+    QList<QLine> transformListOfLinesToListOfQLines(QList<Line> list);
+public Q_SLOTS:
+    void getSelectedObject(int);
 
 };
 
