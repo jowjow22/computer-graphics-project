@@ -73,7 +73,7 @@ void Rotation3D::allocatesRAroundZ() {
                     this->RAroundZ[i][j] = cos(this->angle*(PI/180));
                 }
             } else if(i == 1 && j == 0) {
-                this->RAroundZ[i][j] = sin(this->angle*(PI/180));
+                this->RAroundZ[i][j] = - sin(this->angle*(PI/180));
             } else if(i == 0 && j == 1) {
                 this->RAroundZ[i][j] = sin(this->angle*(PI/180));
             } else {
