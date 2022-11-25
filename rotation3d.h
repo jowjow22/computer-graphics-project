@@ -5,41 +5,27 @@
 class Rotation3D
 {
 public:
-    Rotation3D(float xOld, float yOld, float zOld, float angle);
-    Rotation3D(Point point, float angle);
+    Rotation3D(float xOld, float yOld, float zOld, float angleX, float angleY, float angleZ);
+    Rotation3D(Point point, float angleX, float angleY, float angleZ);
 
     float P[4][1];
     float PNew[4][1];
-    float RAroundX[4][4];
-    float RAroundY[4][4];
-    float RAroundZ[4][4];
+    float R[4][4];
 
     float xOld, yOld, zOld;
-    float angle;
+    float angleX, angleY, angleZ;
 
     float xNew, yNew, zNew;
 
     void allocatesP();
-    void allocatesRAroundX();
-    void allocatesRAroundY();
-    void allocatesRAroundZ();
+    void allocatesR();
     void allocatesPNew();
-    void multiplicationMatrixAroundX();
-    void multiplicationMatrixAroundY();
-    void multiplicationMatrixAroundZ();
+    void multiplicationMatrix();
     void clearAllMatrix();
-    void doRotationAroundX();
-    void doRotationAroundY();
-    void doRotationAroundZ();
-    float getRotationXAroundX();
-    float getRotationYAroundX();
-    float getRotationZAroundX();
-    float getRotationXAroundY();
-    float getRotationYAroundY();
-    float getRotationZAroundY();
-    float getRotationXAroundZ();
-    float getRotationYAroundZ();
-    float getRotationZAroundZ();
+    void doRotation();
+    float getRotationX();
+    float getRotationY();
+    float getRotationZ();
 };
 
 #endif // ROTATION3D_H
