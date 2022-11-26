@@ -4,6 +4,7 @@
 #include "rotation3d.h"
 #include "scale3d.h"
 #include "line.h"
+#include "perspectiveprojection.h"
 #include "point.h"
 #include "readobj.h"
 

@@ -6,7 +6,7 @@ Transformations3d::Transformations3d()
 }
 
 QList<QLine> Transformations3d::getTransformations3d(ReadObj lines, float scaleObject, float angleX, float angleY, float angleZ, float posX, float posY, float posZ){
-    QList<Line> aux, aux2, aux3;
+    QList<Line> aux, aux2, aux3, aux4;
     QList<QLine> QAux;
     for(const Line &line : lines.readLines) {
         aux.append(Line(Rotation3D(Point(line.x1, line.y1, line.z1), angleX, angleY, angleZ).getRotationX(),
@@ -35,7 +35,12 @@ QList<QLine> Transformations3d::getTransformations3d(ReadObj lines, float scaleO
                           Translation3D(Point(line.x2, line.y2, line.z2), 0-posX, 0+posY, 0-posZ).getTranslationZ()));
     }
 
-    for(const Line &line: aux3) {
+    for(const Line &line : aux3) {
+        aux4.append(Line(PerspectiveProjection(Point(line.x1, line.y1, line.z1), 200).newPerspectivePoints(),
+                         PerspectiveProjection(Point(line.x2, line.y2, line.z2), 200).newPerspectivePoints()));
+    }
+
+    for(const Line &line: aux4) {
         QAux.append(QLine(line.x1, line.y1, line.x2, line.y2));
     }
 

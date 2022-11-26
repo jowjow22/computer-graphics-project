@@ -15,6 +15,7 @@ SOURCES += \
     line.cpp \
     main.cpp \
     mainwindow.cpp \
+    perspectiveprojection.cpp \
     point.cpp \
     readobj.cpp \
     rotation3d.cpp \
@@ -29,6 +30,7 @@ HEADERS += \
     house.h \
     line.h \
     mainwindow.h \
+    perspectiveprojection.h \
     point.h \
     readobj.h \
     rotation3d.h \
