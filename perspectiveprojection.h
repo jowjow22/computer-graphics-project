@@ -1,16 +1,15 @@
 #ifndef PERSPECTIVEPROJECTION_H
 #define PERSPECTIVEPROJECTION_H
 #include "point.h"
+#include "line.h"
 
 class PerspectiveProjection
 {
 public:
-    PerspectiveProjection(float xOld, float yOld, float zOld, float distance);
-    PerspectiveProjection(Point point, float distance);
-    float x, y, z;
-    float distance;
+    PerspectiveProjection();
 
-    Point newPerspectivePoints();
+    static QPoint newPerspectivePoints(float x, float y, float z, float distance);
+    static QList<QLine> newListOfPerspectivePoints(QList<Line> list, float distance);
 };
 
 #endif // PERSPECTIVEPROJECTION_H

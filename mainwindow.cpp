@@ -19,6 +19,7 @@ int posX = 0;
 int posY = 0;
 int posZ = 0;
 float scaleObject = 10;
+int focalDistance = 100;
 int maxVPX;
 int idx;
 int maxVPY;
@@ -79,25 +80,13 @@ void MainWindow::paintEvent(QPaintEvent *event){
         objects[idx].size = scaleObject;
 
         for(ReadObj object : objects){
-            for(QLine line : object.draw(&window, &frame)){
+            for(QLine line : object.draw(&window, &frame, focalDistance)){
                 painter.drawLine(line);
             }
         }
 
 
     frame.drawFrame(&painter);
-}
-
-QLine MainWindow::transformLineToQLine(Line line) {
-    return QLine(line.x1, line.y1, line.x2, line.y2);
-}
-
-QList<QLine> MainWindow::transformListOfLinesToListOfQLines(QList<Line> list) {
-    QList<QLine> newList;
-    for(Line& line : list) {
-        newList.append(transformLineToQLine(line));
-    }
-    return newList;
 }
 
 void MainWindow::on_comboBox_currentIndexChanged(int index)
@@ -184,6 +173,13 @@ void MainWindow::on_spinBox_4_valueChanged(int arg1)
 void MainWindow::on_spinBox_5_valueChanged(int arg1)
 {
     scaleObject = arg1;
+    update();
+}
+
+
+void MainWindow::on_spinBox_6_valueChanged(int arg1)
+{
+    focalDistance = arg1;
     update();
 }
 

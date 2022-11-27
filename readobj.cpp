@@ -11,6 +11,7 @@
 #include "mainwindow.h"
 #include <math.h>
 #include "transformations3d.h"
+#include "perspectiveprojection.h"
 
 ReadObj::ReadObj(QString fileName, QColor objColor, int x)
 {
@@ -19,6 +20,7 @@ ReadObj::ReadObj(QString fileName, QColor objColor, int x)
     this->objectColor = objColor;
     this->x = x;
 }
+
 void ReadObj::fileObjReader(){
     if(!this->FLAG){
     QString line;
@@ -74,20 +76,8 @@ string ReadObj::getVertexOfPlane(string value) {
     return value;
 }
 
-
-QList<QLine> ReadObj::transformObjectData(Window *window, Clipping *frame, float scaleObject, float angleX, float angleY, float angleZ, float posX, float posY, float posZ){
-    this->x += posX;
-    this->y += posY;
-    this->z += posZ;
-    this->size += scaleObject;
-    this->angleX = angleX;
-    this->angleY = angleY;
-    this->angleZ = angleZ;
-    return frame->listClipping(window->viewPortTransformLine(Transformations3d::getTransformations3d(*this, this->size, this->angleX, this->angleY, this->angleZ, this->x, this->y, this->z)));
-}
-
-QList<QLine> ReadObj::draw(Window *window, Clipping *frame){
-    return frame->listClipping(window->viewPortTransformLine(Transformations3d::getTransformations3d(*this, this->size, this->angleX, this->angleY, this->angleZ, this->x, this->y, this->z)));
+QList<QLine> ReadObj::draw(Window *window, Clipping *frame, int focalDistance){
+    return frame->listClipping(window->viewPortTransformLine(PerspectiveProjection::newListOfPerspectivePoints(Transformations3d::getTransformations3d(*this, this->size, this->angleX, this->angleY, this->angleZ, this->x, this->y, this->z), focalDistance)));
 }
 
 void ReadObj::clearValues(string values[]) {

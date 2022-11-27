@@ -53,7 +53,6 @@ QList<QPoint> Window::viewPortTransformPoint(QList<QPoint> points){
     return viewPortPoints;
 }
 
-//tentar trocar para line
 QList<QLine> Window::viewPortTransformLine(QList<QLine> lines){
     QList<QLine> viewPortLines;
     for(QLine line : lines){

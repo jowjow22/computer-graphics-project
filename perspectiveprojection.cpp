@@ -1,21 +1,18 @@
 #include "perspectiveprojection.h"
 
-PerspectiveProjection::PerspectiveProjection(float x, float y, float z, float distance)
+PerspectiveProjection::PerspectiveProjection()
 {
-    this->x = x;
-    this->y = y;
-    this->z = z;
-    this->distance = distance;
+
 }
 
-PerspectiveProjection::PerspectiveProjection(Point point, float distance)
-{
-    this->x = point.x;
-    this->y = point.y;
-    this->z = point.z;
-    this->distance = distance;
+QPoint PerspectiveProjection::newPerspectivePoints(float x, float y, float z, float distance) {
+    return QPoint((x/(z/distance)), (y/(z/distance)));
 }
 
-Point PerspectiveProjection::newPerspectivePoints() {
-    return Point((this->x/(this->z/this->distance)), (this->y/(this->z/this->distance)), this->distance);
+QList<QLine> PerspectiveProjection::newListOfPerspectivePoints(QList<Line> list, float distance) {
+    QList<QLine> returnedList;
+    for(const Line &line : list) {
+        returnedList.append(QLine(newPerspectivePoints(line.x1, line.y1, line.z1, distance), newPerspectivePoints(line.x2, line.y2, line.z2, distance)));
+    }
+    return returnedList;
 }

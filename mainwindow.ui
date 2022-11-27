@@ -180,6 +180,9 @@ color: #FFF;
      <property name="singleStep">
       <number>15</number>
      </property>
+     <property name="value">
+      <number>300</number>
+     </property>
     </widget>
     <widget class="QLabel" name="label_7">
      <property name="geometry">
@@ -381,6 +384,35 @@ color: #FFF;
      </property>
      <property name="text">
       <string>Angle Z:</string>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="spinBox_6">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>340</y>
+       <width>91</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="maximum">
+      <number>500</number>
+     </property>
+     <property name="value">
+      <number>100</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>310</y>
+       <width>101</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Focal Distance:</string>
      </property>
     </widget>
    </widget>
