@@ -12,6 +12,9 @@
 int xGlobal = 0;
 int yGlobal = 0;
 int SCALE = 300;
+int windowAngleX = 0;
+int windowAngleY = 0;
+int windowAngleZ = 0;
 int AngleX = 0;
 int AngleY = 0;
 int AngleZ = 0;
@@ -80,7 +83,7 @@ void MainWindow::paintEvent(QPaintEvent *event){
         objects[idx].size = scaleObject;
 
         for(ReadObj object : objects){
-            for(QLine line : object.draw(&window, &frame, focalDistance)){
+            for(QLine line : object.draw(&window, &frame, windowAngleX, windowAngleY, windowAngleZ, focalDistance)){
                 painter.drawLine(line);
             }
         }
@@ -180,6 +183,28 @@ void MainWindow::on_spinBox_5_valueChanged(int arg1)
 void MainWindow::on_spinBox_6_valueChanged(int arg1)
 {
     focalDistance = arg1;
+    update();
+}
+
+
+
+void MainWindow::on_dial_4_sliderMoved(int position)
+{
+    windowAngleX = position;
+    update();
+}
+
+
+void MainWindow::on_dial_5_sliderMoved(int position)
+{
+    windowAngleY = position;
+    update();
+}
+
+
+void MainWindow::on_dial_6_sliderMoved(int position)
+{
+    windowAngleZ = position;
     update();
 }
 

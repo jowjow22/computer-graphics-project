@@ -69,6 +69,12 @@ private slots:
 
     void on_spinBox_6_valueChanged(int arg1);
 
+    void on_dial_4_sliderMoved(int position);
+
+    void on_dial_5_sliderMoved(int position);
+
+    void on_dial_6_sliderMoved(int position);
+
 private:
     Ui::MainWindow *ui;
 };

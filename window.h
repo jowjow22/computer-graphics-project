@@ -21,7 +21,7 @@ public:
     float gNormalizedY(float y);
     float setWindow();
     QList<QPoint> viewPortTransformPoint(QList<QPoint> points);
-    QList<QLine> viewPortTransformLine(QList<QLine> lines);
+    QList<QLine> viewPortTransformLine(QList<QLine> lines, int windowAngleX, int windowAngleY, int windowAngleZ);
 };
 
 #endif // WINDOW_H
