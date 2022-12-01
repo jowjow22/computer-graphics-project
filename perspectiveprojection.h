@@ -8,8 +8,8 @@ class PerspectiveProjection
 public:
     PerspectiveProjection();
 
-    static QPoint newPerspectivePoints(float x, float y, float z, float distance);
-    static QList<QLine> newListOfPerspectivePoints(QList<Line> list, float distance);
+    static Point newPerspectivePoints(float x, float y, float z, float distance);
+    static QList<Line> newListOfPerspectivePoints(QList<Line> list, float distance);
 };
 
 #endif // PERSPECTIVEPROJECTION_H

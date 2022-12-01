@@ -103,6 +103,9 @@ color: #FFF;
      <property name="singleStep">
       <number>1</number>
      </property>
+     <property name="pageStep">
+      <number>1</number>
+     </property>
     </widget>
     <widget class="QSpinBox" name="spinBox">
      <property name="geometry">
@@ -222,6 +225,9 @@ color: #FFF;
      <property name="singleStep">
       <number>1</number>
      </property>
+     <property name="pageStep">
+      <number>1</number>
+     </property>
     </widget>
     <widget class="QDial" name="dial_3">
      <property name="geometry">
@@ -236,6 +242,9 @@ color: #FFF;
       <number>360</number>
      </property>
      <property name="singleStep">
+      <number>1</number>
+     </property>
+     <property name="pageStep">
       <number>1</number>
      </property>
     </widget>
@@ -427,6 +436,9 @@ color: #FFF;
      <property name="maximum">
       <number>360</number>
      </property>
+     <property name="pageStep">
+      <number>1</number>
+     </property>
     </widget>
     <widget class="QDial" name="dial_5">
      <property name="geometry">
@@ -440,6 +452,9 @@ color: #FFF;
      <property name="maximum">
       <number>360</number>
      </property>
+     <property name="pageStep">
+      <number>1</number>
+     </property>
     </widget>
     <widget class="QDial" name="dial_6">
      <property name="geometry">
@@ -452,6 +467,9 @@ color: #FFF;
      </property>
      <property name="maximum">
       <number>360</number>
+     </property>
+     <property name="pageStep">
+      <number>1</number>
      </property>
     </widget>
     <widget class="QLabel" name="label_14">
@@ -500,6 +518,25 @@ color: #FFF;
      </property>
      <property name="text">
       <string>Angle Z:</string>
+     </property>
+    </widget>
+    <widget class="QSlider" name="horizontalSlider_2">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>520</y>
+       <width>160</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="minimum">
+      <number>-1000</number>
+     </property>
+     <property name="maximum">
+      <number>1000</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </widget>

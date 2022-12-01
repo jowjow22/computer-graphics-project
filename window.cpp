@@ -2,18 +2,21 @@
 #include <QRect>
 #include "rotation3d.h"
 
-Window::Window(int vpMaxX, int vpMaxY, float wXMin, float wXMax, float wYMin, float wYMax)
+Window::Window(int vpMaxX, int vpMaxY, int vpMaxZ, float wXMin, float wXMax, float wYMin, float wYMax, float wZMin, float wZMax)
 {
     //window definitions
     this->wXMax = wXMax;
     this->wXMin = wXMin;
     this->wYMax = wYMax;
     this->wYMin = wYMin;
+    this->wZMax = wZMax;
+    this->wZMin = wZMin;
     //window definitions
 
     //viewport info
     this->vpMaxX = vpMaxX;
     this->vpMaxY = vpMaxY;
+    this->vpMaxZ = vpMaxZ;
     //viewport info
 }
 
@@ -27,6 +30,11 @@ float Window::getWindowY(float y){
     return (this->worldMid[0] + windowMidY + y);
 }
 
+float Window::getWindowZ(float z){
+    float windowMidZ = (this->wZMax-this->wZMin)/2;
+    return (this->worldMid[0] + windowMidZ + z);
+}
+
 float Window::gNormalizedX(float x){
     float windowX = (this->getWindowX(x)-this->wXMin)/ (this->wXMax - this->wXMin);
     return windowX;
@@ -37,6 +45,11 @@ float Window::gNormalizedY(float y){
     return windowY;
 }
 
+float Window::gNormalizedZ(float z){
+    float windowZ = 1 - (this->getWindowZ(z) - this->wZMin) / (this->wZMax - this->wZMin);
+    return windowZ;
+}
+
 float Window::gVPX(float x){
     return this->gNormalizedX(x)*this->vpMaxX;
 }
@@ -45,21 +58,27 @@ float Window::gVPY(float y){
     return this->gNormalizedY(y)*this->vpMaxY;
 }
 
-QList<QPoint> Window::viewPortTransformPoint(QList<QPoint> points){
-    QList<QPoint> viewPortPoints;
-    for(QPoint point : points){
-        viewPortPoints.append(QPoint(this->gVPX(point.x()), this->gVPY(point.y())));
+float Window::gVPZ(float z){
+    return this->gNormalizedZ(z)*this->vpMaxZ;
+}
+
+QList<Point> Window::viewPortTransformPoint(QList<Point> points){
+    QList<Point> viewPortPoints;
+    for(const Point &point : points){
+        viewPortPoints.append(Point(this->gVPX(point.x), this->gVPY(point.y), this->gVPZ(point.z)));
     }
     return viewPortPoints;
 }
 
-QList<QLine> Window::viewPortTransformLine(QList<QLine> lines, int windowAngleX, int windowAngleY, int windowAngleZ){
-    QList<QLine> viewPortLines;
-    for(QLine line : lines){
-        viewPortLines.append(QLine(this->gVPX(Rotation3D((line.x1()), (line.y1()), 0, windowAngleX, windowAngleY, windowAngleZ).getRotationX()),
-                                   this->gVPY(Rotation3D((line.x1()), (line.y1()), 0, windowAngleX, windowAngleY, windowAngleZ).getRotationY()),
-                                   this->gVPX(Rotation3D((line.x2()), (line.y2()), 0, windowAngleX, windowAngleY, windowAngleZ).getRotationX()),
-                                   this->gVPY(Rotation3D((line.x2()), (line.y2()), 0, windowAngleX, windowAngleY, windowAngleZ).getRotationY())));
+QList<Line> Window::viewPortTransformLine(QList<Line> lines, int windowAngleX, int windowAngleY, int windowAngleZ){
+    QList<Line> viewPortLines;
+    for(const Line &line : lines){
+        viewPortLines.append(Line(this->gVPX(Rotation3D((line.x1), (line.y1), (line.z1), windowAngleX, windowAngleY, windowAngleZ).getRotationX()),
+                                  this->gVPY(Rotation3D((line.x1), (line.y1), (line.z1), windowAngleX, windowAngleY, windowAngleZ).getRotationY()),
+                                  this->gVPZ(Rotation3D((line.x1), (line.y1), (line.z1), windowAngleX, windowAngleY, windowAngleZ).getRotationZ()),
+                                  this->gVPX(Rotation3D((line.x2), (line.y2), (line.z2), windowAngleX, windowAngleY, windowAngleZ).getRotationX()),
+                                  this->gVPY(Rotation3D((line.x2), (line.y2), (line.z2), windowAngleX, windowAngleY, windowAngleZ).getRotationY()),
+                                  this->gVPZ(Rotation3D((line.x2), (line.y2), (line.z2), windowAngleX, windowAngleY, windowAngleZ).getRotationZ())));
     }
     return viewPortLines;
 }

@@ -1,9 +1,9 @@
 #include "clipping.h"
 #include <iostream>
 
-Clipping::Clipping(QList<QPoint> points) {
-    for(QPoint point : points){
-        this->framePoints.append(point);
+Clipping::Clipping(QList<Point> points) {
+    for(const Point &point : points){
+        this->framePoints.append(point.point);
     }
 }
 
@@ -135,11 +135,11 @@ QLine Clipping::doClipping(QLine line) {
     return QLine();
 }
 
-QList<QLine> Clipping::listClipping(QList<QLine> list) {
+QList<QLine> Clipping::listClipping(QList<Line> list) {
     defineFramePoints();
     QList<QLine> returnedList;
     for(int i = 0; i < list.length(); i++) {
-        returnedList.append(doClipping(list.at(i)));
+        returnedList.append(doClipping(list.at(i).line));
     }
     return returnedList;
 }

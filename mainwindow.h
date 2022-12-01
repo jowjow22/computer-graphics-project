@@ -75,6 +75,8 @@ private slots:
 
     void on_dial_6_sliderMoved(int position);
 
+    void on_horizontalSlider_2_sliderMoved(int position);
+
 private:
     Ui::MainWindow *ui;
 };
