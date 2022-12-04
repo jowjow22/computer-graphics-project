@@ -1,6 +1,7 @@
 #include "window.h"
 #include <QRect>
 #include "rotation3d.h"
+#include "transformations3d.h"
 
 Window::Window(int vpMaxX, int vpMaxY, int vpMaxZ, float wXMin, float wXMax, float wYMin, float wYMax, float wZMin, float wZMax)
 {
@@ -62,6 +63,11 @@ float Window::gVPZ(float z){
     return this->gNormalizedZ(z)*this->vpMaxZ;
 }
 
+Line Window::gVPLine(Line line) {
+    return Line(this->gVPX(line.x1), this->gVPY(line.y1), this->gVPZ(line.z1),
+                this->gVPX(line.x2), this->gVPY(line.y2), this->gVPZ(line.z2));
+}
+
 QList<Point> Window::viewPortTransformPoint(QList<Point> points){
     QList<Point> viewPortPoints;
     for(const Point &point : points){
@@ -70,15 +76,10 @@ QList<Point> Window::viewPortTransformPoint(QList<Point> points){
     return viewPortPoints;
 }
 
-QList<Line> Window::viewPortTransformLine(QList<Line> lines, int windowAngleX, int windowAngleY, int windowAngleZ){
+QList<Line> Window::viewPortTransformLine(QList<Line> lines, int windowScale, int windowAngleX, int windowAngleY, int windowAngleZ, int windowPosX, int windowPosY, int windowPosZ){
     QList<Line> viewPortLines;
     for(const Line &line : lines){
-        viewPortLines.append(Line(this->gVPX(Rotation3D((line.x1), (line.y1), (line.z1), windowAngleX, windowAngleY, windowAngleZ).getRotationX()),
-                                  this->gVPY(Rotation3D((line.x1), (line.y1), (line.z1), windowAngleX, windowAngleY, windowAngleZ).getRotationY()),
-                                  this->gVPZ(Rotation3D((line.x1), (line.y1), (line.z1), windowAngleX, windowAngleY, windowAngleZ).getRotationZ()),
-                                  this->gVPX(Rotation3D((line.x2), (line.y2), (line.z2), windowAngleX, windowAngleY, windowAngleZ).getRotationX()),
-                                  this->gVPY(Rotation3D((line.x2), (line.y2), (line.z2), windowAngleX, windowAngleY, windowAngleZ).getRotationY()),
-                                  this->gVPZ(Rotation3D((line.x2), (line.y2), (line.z2), windowAngleX, windowAngleY, windowAngleZ).getRotationZ())));
+        viewPortLines.append(this->gVPLine(Transformations3d::getWindowTransformations3d(line, windowScale, windowAngleX, windowAngleY, windowAngleZ, windowPosX, windowPosY, windowPosZ)));
     }
     return viewPortLines;
 }

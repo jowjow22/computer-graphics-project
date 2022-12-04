@@ -76,8 +76,8 @@ string ReadObj::getVertexOfPlane(string value) {
     return value;
 }
 
-QList<QLine> ReadObj::draw(Window *window, Clipping *frame, int windowAngleX, int windowAngleY, int windowAngleZ, int focalDistance){
-    return frame->listClipping(window->viewPortTransformLine(PerspectiveProjection::newListOfPerspectivePoints(Transformations3d::getTransformations3d(*this, this->size, this->angleX, this->angleY, this->angleZ, this->x, this->y, this->z), focalDistance), windowAngleX, windowAngleY, windowAngleZ));
+QList<QLine> ReadObj::draw(Window *window, Clipping *frame, int windowScale, int windowAngleX, int windowAngleY, int windowAngleZ, int windowPosX, int windowPosY, int windowPosZ, int focalDistance){
+    return frame->listClipping(window->viewPortTransformLine(PerspectiveProjection::newListOfPerspectivePoints(Transformations3d::getTransformations3d(*this, this->size, this->angleX, this->angleY, this->angleZ, this->x, this->y, this->z), focalDistance), windowScale, windowAngleX, windowAngleY, windowAngleZ, windowPosX, windowPosY, windowPosZ));
 }
 
 void ReadObj::clearValues(string values[]) {

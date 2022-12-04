@@ -13,9 +13,13 @@ int xGlobal = 0;
 int yGlobal = 0;
 int zGlobal = 0;
 int SCALE = 300;
+int windowScale = 0;
 int windowAngleX = 0;
 int windowAngleY = 0;
 int windowAngleZ = 0;
+int windowPosX = 0;
+int windowPosY = 0;
+int windowPosZ = 0;
 int AngleX = 0;
 int AngleY = 0;
 int AngleZ = 0;
@@ -86,7 +90,7 @@ void MainWindow::paintEvent(QPaintEvent *event){
         objects[idx].size = scaleObject;
 
         for(ReadObj object : objects){
-            for(QLine line : object.draw(&window, &frame, windowAngleX, windowAngleY, windowAngleZ, focalDistance)){
+            for(QLine line : object.draw(&window, &frame, windowScale, windowAngleX, windowAngleY, windowAngleZ, windowPosX, windowPosY, windowPosZ, focalDistance)){
                 painter.drawLine(line);
             }
         }
@@ -116,21 +120,21 @@ void MainWindow::on_comboBox_currentIndexChanged(int index)
 
 void MainWindow::on_verticalSlider_sliderMoved(int position)
 {
-    yGlobal = position;
+    windowPosY = position;
     update();
 }
 
 
 void MainWindow::on_horizontalSlider_sliderMoved(int position)
 {
-    xGlobal = position;
+    windowPosX = position;
     update();
 }
 
 
 void MainWindow::on_horizontalSlider_2_sliderMoved(int position)
 {
-    zGlobal = position;
+    focalDistance = position;
     update();
 }
 
@@ -150,7 +154,7 @@ void MainWindow::on_spinBox_valueChanged(int arg1)
 
 void MainWindow::on_spinBox_2_valueChanged(int arg1)
 {
-    SCALE = arg1;
+    windowScale = arg1;
     update();
 }
 
@@ -188,15 +192,6 @@ void MainWindow::on_spinBox_5_valueChanged(int arg1)
     scaleObject = arg1;
     update();
 }
-
-
-void MainWindow::on_spinBox_6_valueChanged(int arg1)
-{
-    focalDistance = arg1;
-    update();
-}
-
-
 
 void MainWindow::on_dial_4_sliderMoved(int position)
 {

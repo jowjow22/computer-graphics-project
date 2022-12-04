@@ -17,6 +17,7 @@ public:
     float gVPX(float x);
     float gVPY(float y);
     float gVPZ(float z);
+    Line gVPLine(Line line);
     float getWindowX(float x);
     float getWindowY(float y);
     float getWindowZ(float z);
@@ -25,7 +26,7 @@ public:
     float gNormalizedZ(float z);
     float setWindow();
     QList<Point> viewPortTransformPoint(QList<Point> points);
-    QList<Line> viewPortTransformLine(QList<Line> lines, int windowAngleX, int windowAngleY, int windowAngleZ);
+    QList<Line> viewPortTransformLine(QList<Line> lines, int windowScale, int windowAngleX, int windowAngleY, int windowAngleZ, int windowPosX, int windowPosY, int windowPosZ);
 };
 
 #endif // WINDOW_H

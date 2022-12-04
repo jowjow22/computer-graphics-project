@@ -14,6 +14,7 @@ class Transformations3d
 public:
     Transformations3d();
     static QList<Line> getTransformations3d(ReadObj lines, float scaleObject, float angleX, float angleY, float angleZ, float posX, float posY, float posZ);
+    static Line getWindowTransformations3d(Line lines, float scaleObject, float angleX, float angleY, float angleZ, float posX, float posY, float posZ);
 };
 
 #endif // TRANSFORMATIONS3D_H
