@@ -11,7 +11,15 @@
 
 int xGlobal = 0;
 int yGlobal = 0;
+int zGlobal = 0;
 int SCALE = 300;
+int windowScale = 0;
+int windowAngleX = 0;
+int windowAngleY = 0;
+int windowAngleZ = 0;
+int windowPosX = 0;
+int windowPosY = 0;
+int windowPosZ = 0;
 int AngleX = 0;
 int AngleY = 0;
 int AngleZ = 0;
@@ -19,9 +27,11 @@ int posX = 0;
 int posY = 0;
 int posZ = 0;
 float scaleObject = 10;
+int focalDistance = 100;
 int maxVPX;
-int idx;
 int maxVPY;
+int maxVPZ;
+int idx;
 ReadObj squirtleObj("cubone", Qt::blue, 100);
 ReadObj cuboneObj("zoubat", Qt::green, 0);
 
@@ -57,16 +67,17 @@ void MainWindow::paintEvent(QPaintEvent *event){
     QPainter painter(this);
     QPen pen;
     pen.setColor(Qt::red);
-    pen.setWidth(1);
+    pen.setWidth(0);
     painter.setPen(pen);
 
     maxVPX = 1000;
     maxVPY = 1000;
+    maxVPZ = 1000;
 
-    Window window(maxVPX, maxVPY, xGlobal, xGlobal+SCALE, yGlobal, yGlobal+SCALE);
+    Window window(maxVPX, maxVPY, maxVPZ, xGlobal, xGlobal+SCALE, yGlobal, yGlobal+SCALE, zGlobal, zGlobal+SCALE);
 
-    QList<QPoint> framePoints = {QPoint(-100 + xGlobal, 100 + yGlobal), QPoint(100 + xGlobal, 100 + yGlobal),
-                                 QPoint(100 + xGlobal, -100 + yGlobal), QPoint(-100 + xGlobal, -100 + yGlobal)};
+    QList<Point> framePoints = {Point(-100 + xGlobal, 100 + yGlobal, zGlobal), Point(100 + xGlobal, 100 + yGlobal, zGlobal),
+                                Point(100 + xGlobal, -100 + yGlobal, zGlobal), Point(-100 + xGlobal, -100 + yGlobal, zGlobal)};
 
     Clipping frame(window.viewPortTransformPoint(framePoints));
 
@@ -79,25 +90,13 @@ void MainWindow::paintEvent(QPaintEvent *event){
         objects[idx].size = scaleObject;
 
         for(ReadObj object : objects){
-            for(QLine line : object.draw(&window, &frame)){
+            for(QLine line : object.draw(&window, &frame, windowScale, windowAngleX, windowAngleY, windowAngleZ, windowPosX, windowPosY, windowPosZ, focalDistance)){
                 painter.drawLine(line);
             }
         }
 
 
     frame.drawFrame(&painter);
-}
-
-QLine MainWindow::transformLineToQLine(Line line) {
-    return QLine(line.x1, line.y1, line.x2, line.y2);
-}
-
-QList<QLine> MainWindow::transformListOfLinesToListOfQLines(QList<Line> list) {
-    QList<QLine> newList;
-    for(Line& line : list) {
-        newList.append(transformLineToQLine(line));
-    }
-    return newList;
 }
 
 void MainWindow::on_comboBox_currentIndexChanged(int index)
@@ -121,14 +120,21 @@ void MainWindow::on_comboBox_currentIndexChanged(int index)
 
 void MainWindow::on_verticalSlider_sliderMoved(int position)
 {
-    yGlobal = position;
+    windowPosY = position;
     update();
 }
 
 
 void MainWindow::on_horizontalSlider_sliderMoved(int position)
 {
-    xGlobal = position;
+    windowPosX = position;
+    update();
+}
+
+
+void MainWindow::on_horizontalSlider_2_sliderMoved(int position)
+{
+    focalDistance = position;
     update();
 }
 
@@ -148,7 +154,7 @@ void MainWindow::on_spinBox_valueChanged(int arg1)
 
 void MainWindow::on_spinBox_2_valueChanged(int arg1)
 {
-    SCALE = arg1;
+    windowScale = arg1;
     update();
 }
 
@@ -184,6 +190,26 @@ void MainWindow::on_spinBox_4_valueChanged(int arg1)
 void MainWindow::on_spinBox_5_valueChanged(int arg1)
 {
     scaleObject = arg1;
+    update();
+}
+
+void MainWindow::on_dial_4_sliderMoved(int position)
+{
+    windowAngleX = position;
+    update();
+}
+
+
+void MainWindow::on_dial_5_sliderMoved(int position)
+{
+    windowAngleY = position;
+    update();
+}
+
+
+void MainWindow::on_dial_6_sliderMoved(int position)
+{
+    windowAngleZ = position;
     update();
 }
 

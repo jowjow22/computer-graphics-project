@@ -5,38 +5,20 @@ Transformations3d::Transformations3d()
 
 }
 
-QList<QLine> Transformations3d::getTransformations3d(ReadObj lines, float scaleObject, float angleX, float angleY, float angleZ, float posX, float posY, float posZ){
-    QList<Line> aux, aux2, aux3, aux4, aux5;
-    QList<QLine> QAux;
+QList<Line> Transformations3d::getTransformations3d(ReadObj lines, float scaleObject, float angleX, float angleY, float angleZ, float posX, float posY, float posZ){
+    QList<Line> aux, aux2;
+    QList<Line> QAux;
     for(const Line &line : lines.readLines) {
-        aux.append(Line(Rotation3D(Point(line.x1, line.y1, line.z1), angleX).getRotationXAroundX(),
-                        Rotation3D(Point(line.x1, line.y1, line.z1), angleX).getRotationYAroundX(),
-                        Rotation3D(Point(line.x1, line.y1, line.z1), angleX).getRotationZAroundX(),
-                        Rotation3D(Point(line.x2, line.y2, line.z2), angleX).getRotationXAroundX(),
-                        Rotation3D(Point(line.x2, line.y2, line.z2), angleX).getRotationYAroundX(),
-                        Rotation3D(Point(line.x2, line.y2, line.z2), angleX).getRotationZAroundX()));
+        aux.append(Line(Rotation3D(Point(line.x1, line.y1, line.z1), angleX, angleY, angleZ).getRotationX(),
+                        Rotation3D(Point(line.x1, line.y1, line.z1), angleX, angleY, angleZ).getRotationY(),
+                        Rotation3D(Point(line.x1, line.y1, line.z1), angleX, angleY, angleZ).getRotationZ(),
+                        Rotation3D(Point(line.x2, line.y2, line.z2), angleX, angleY, angleZ).getRotationX(),
+                        Rotation3D(Point(line.x2, line.y2, line.z2), angleX, angleY, angleZ).getRotationY(),
+                        Rotation3D(Point(line.x2, line.y2, line.z2), angleX, angleY, angleZ).getRotationZ()));
     }
 
     for(const Line &line : aux) {
-        aux2.append(Line(Rotation3D(Point(line.x1, line.y1, line.z1), angleY).getRotationXAroundY(),
-                         Rotation3D(Point(line.x1, line.y1, line.z1), angleY).getRotationYAroundY(),
-                         Rotation3D(Point(line.x1, line.y1, line.z1), angleY).getRotationZAroundY(),
-                         Rotation3D(Point(line.x2, line.y2, line.z2), angleY).getRotationXAroundY(),
-                         Rotation3D(Point(line.x2, line.y2, line.z2), angleY).getRotationYAroundY(),
-                         Rotation3D(Point(line.x2, line.y2, line.z2), angleY).getRotationZAroundY()));
-    }
-
-    for(const Line &line : aux2) {
-        aux3.append(Line(Rotation3D(Point(line.x1, line.y1, line.z1), angleZ).getRotationXAroundZ(),
-                         Rotation3D(Point(line.x1, line.y1, line.z1), angleZ).getRotationYAroundZ(),
-                         Rotation3D(Point(line.x1, line.y1, line.z1), angleZ).getRotationZAroundZ(),
-                         Rotation3D(Point(line.x2, line.y2, line.z2), angleZ).getRotationXAroundZ(),
-                         Rotation3D(Point(line.x2, line.y2, line.z2), angleZ).getRotationYAroundZ(),
-                         Rotation3D(Point(line.x2, line.y2, line.z2), angleZ).getRotationZAroundZ()));
-    }
-
-    for(const Line &line : aux3) {
-        aux4.append(Line(Scale3D(Point(line.x1, line.y1, line.z1), 1+scaleObject).getScaleX(),
+        aux2.append(Line(Scale3D(Point(line.x1, line.y1, line.z1), 1+scaleObject).getScaleX(),
                          Scale3D(Point(line.x1, line.y1, line.z1), 1+scaleObject).getScaleY(),
                          Scale3D(Point(line.x1, line.y1, line.z1), 1+scaleObject).getScaleZ(),
                          Scale3D(Point(line.x2, line.y2, line.z2), 1+scaleObject).getScaleX(),
@@ -44,18 +26,40 @@ QList<QLine> Transformations3d::getTransformations3d(ReadObj lines, float scaleO
                          Scale3D(Point(line.x2, line.y2, line.z2), 1+scaleObject).getScaleZ()));
     }
 
-    for(const Line &line : aux4) {
-        aux5.append(Line(Translation3D(Point(line.x1, line.y1, line.z1), 0-posX, 0+posY, 0-posZ).getTranslationX(),
+    for(const Line &line : aux2) {
+        QAux.append(Line(Translation3D(Point(line.x1, line.y1, line.z1), 0-posX, 0+posY, 0-posZ).getTranslationX(),
                           Translation3D(Point(line.x1, line.y1, line.z1), 0-posX, 0+posY, 0-posZ).getTranslationY(),
                           Translation3D(Point(line.x1, line.y1, line.z1), 0-posX, 0+posY, 0-posZ).getTranslationZ(),
                           Translation3D(Point(line.x2, line.y2, line.z2), 0-posX, 0+posY, 0-posZ).getTranslationX(),
                           Translation3D(Point(line.x2, line.y2, line.z2), 0-posX, 0+posY, 0-posZ).getTranslationY(),
                           Translation3D(Point(line.x2, line.y2, line.z2), 0-posX, 0+posY, 0-posZ).getTranslationZ()));
     }
+    return QAux;
+}
 
-    for(const Line &line: aux5) {
-        QAux.append(QLine(line.x1, line.y1, line.x2, line.y2));
-    }
+Line Transformations3d::getWindowTransformations3d(Line line, float scaleObject, float angleX, float angleY, float angleZ, float posX, float posY, float posZ){
+    Line aux, aux2;
+    Line QAux;
+    aux = Line(Rotation3D(Point(line.x1, line.y1, line.z1), angleX, angleY, angleZ).getRotationX(),
+               Rotation3D(Point(line.x1, line.y1, line.z1), angleX, angleY, angleZ).getRotationY(),
+               Rotation3D(Point(line.x1, line.y1, line.z1), angleX, angleY, angleZ).getRotationZ(),
+               Rotation3D(Point(line.x2, line.y2, line.z2), angleX, angleY, angleZ).getRotationX(),
+               Rotation3D(Point(line.x2, line.y2, line.z2), angleX, angleY, angleZ).getRotationY(),
+               Rotation3D(Point(line.x2, line.y2, line.z2), angleX, angleY, angleZ).getRotationZ());
+
+    aux2 = Line(Scale3D(Point(aux.x1, aux.y1, aux.z1), 1+scaleObject).getScaleX(),
+                Scale3D(Point(aux.x1, aux.y1, aux.z1), 1+scaleObject).getScaleY(),
+                Scale3D(Point(aux.x1, aux.y1, aux.z1), 1+scaleObject).getScaleZ(),
+                Scale3D(Point(aux.x2, aux.y2, aux.z2), 1+scaleObject).getScaleX(),
+                Scale3D(Point(aux.x2, aux.y2, aux.z2), 1+scaleObject).getScaleY(),
+                Scale3D(Point(aux.x2, aux.y2, aux.z2), 1+scaleObject).getScaleZ());
+
+    QAux = Line(Translation3D(Point(aux2.x1, aux2.y1, aux2.z1), 0-posX, 0+posY, 0-posZ).getTranslationX(),
+                Translation3D(Point(aux2.x1, aux2.y1, aux2.z1), 0-posX, 0+posY, 0-posZ).getTranslationY(),
+                Translation3D(Point(aux2.x1, aux2.y1, aux2.z1), 0-posX, 0+posY, 0-posZ).getTranslationZ(),
+                Translation3D(Point(aux2.x2, aux2.y2, aux2.z2), 0-posX, 0+posY, 0-posZ).getTranslationX(),
+                Translation3D(Point(aux2.x2, aux2.y2, aux2.z2), 0-posX, 0+posY, 0-posZ).getTranslationY(),
+                Translation3D(Point(aux2.x2, aux2.y2, aux2.z2), 0-posX, 0+posY, 0-posZ).getTranslationZ());
 
     return QAux;
 }
